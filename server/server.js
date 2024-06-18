@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 // Local Imports
 import authRoutes from "./routes/auth.routes.js";
 import messagesRoutes from "./routes/messages.routes.js";
+import userRoutes from "./routes/user.routes.js";
 import connectToDb from "./db/connectMongo.js";
 
 // Declared Variables
@@ -23,6 +24,7 @@ app.use(cookieParser());
 // Routes
 app.use("/auth", authRoutes);
 app.use("/messages", messagesRoutes);
+app.use("/users", userRoutes);
 
 app.listen(PORT, () => {
   connectToDb();
