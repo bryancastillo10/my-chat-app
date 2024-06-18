@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 body {
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("/batanes.jpg");
+  background: linear-gradient(rgba(0, 191, 255, 0.2), rgba(72, 255, 139, 0.2)),
+    url("/space.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
