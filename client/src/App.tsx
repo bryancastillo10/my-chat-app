@@ -1,7 +1,11 @@
+import Login from "./pages/login/Login";
+import SignUp from "./pages/signup/SignUp";
+
 const App = () => {
   return (
-    <div>
-      <h1>React Rendered</h1>
+    <div className="p-4 h-screen flex  justify-center items-center">
+      <Login />
+      <SignUp />
     </div>
   );
 };
