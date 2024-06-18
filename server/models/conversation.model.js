@@ -1,7 +1,7 @@
-import mongoose, { Mongoose } from "mongoose";
-import Message from "./message.model";
+import mongoose from "mongoose";
+import Message from "./message.model.js";
 
-const conversationSchema = new Mongoose.Schema(
+const conversationSchema = new mongoose.Schema(
   {
     // participants is with reference to the User model while messages is with reference to the message model
     participants: [
@@ -24,4 +24,4 @@ const conversationSchema = new Mongoose.Schema(
 
 const Conversation = mongoose.model("Conversation", conversationSchema);
 
-export default Message;
+export default Conversation;
