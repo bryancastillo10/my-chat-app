@@ -1,73 +1,51 @@
 import GenderCheckbox from "./GenderCheckbox";
+import { FieldInput, Heading } from "../../components";
 
 const SignUp = () => {
   return (
     <div className="flex flex-col justify-center items-center min-w-96 mx-auto">
-      <div className="w-full p-6 rounded-lg border shadow-md bg-blue-800 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0">
-        <h1 className="text-3xl font-semibold text-center text-zinc-500">
-          Sign Up &nbsp;
-          <span className="text-amber-500">My Chat App</span>
-        </h1>
+      <div className="w-full p-6 rounded-lg shadow-md bg-white/10 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0">
+        <Heading
+          isSignUpPage
+          header="Get Started"
+          subHeader="Register Here"
+        />
 
         <form>
           {/* Fullname */}
-          <div>
-            <label className="label p-2">
-              <span className="text-base label-text text-amber-500">
-                Full Name
-              </span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your full name"
-              className="w-full input input-bordered h-10"
-            />
-          </div>
+          <FieldInput
+            isSignUpPage
+            textLabel="Full Name"
+            type="text"
+            placeholder="Enter your full name"
+          />
 
           {/* Username */}
-          <div>
-            <label className="label p-2">
-              <span className="text-base label-text text-amber-500">
-                Username
-              </span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your username"
-              className="w-full input input-bordered h-10"
-            />
-          </div>
+          <FieldInput
+            isSignUpPage
+            textLabel="Username"
+            type="text"
+            placeholder="Enter your username"
+          />
 
           {/* Password */}
-          <div>
-            <label className="label p-2">
-              <span className="text-base label-text text-amber-500">
-                Password
-              </span>
-            </label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              className="w-full input input-bordered h-10"
-            />
-          </div>
+            <FieldInput
+            isSignUpPage
+            textLabel="Password"
+            type="password"
+            placeholder="Enter your password"
+          />
 
-          {/* Password */}
-          <div>
-            <label className="label p-2">
-              <span className="text-base label-text text-amber-500">
-                Confirm Password
-              </span>
-            </label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              className="w-full input input-bordered h-10"
-            />
-          </div>
+          {/* Confirm Password */}
+          <FieldInput
+            isSignUpPage
+            textLabel="Confirm Password"
+            type="password"
+            placeholder="Re-enter your password"
+          />
 
           {/* Gender Checkbox */}
-
+          <h1 className="mt-2 indent-2 text-amber-500">Gender</h1>
           <GenderCheckbox />
 
           <a
