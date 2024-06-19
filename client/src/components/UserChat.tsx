@@ -1,13 +1,10 @@
-const Chat = () => {
+const UserChat = () => {
   return (
     <>
       <div className="flex items-center rounded-sm px-2 py-1 gap-2 hover:bg-sky-500/80 cursor-pointer">
         <div className="avatar online">
-          <div className="w-12 rounded">
-            <img
-              src="https://avatar.iran.liara.run/public/boy"
-              alt="user avatar"
-            />
+          <div className="w-12 rounded-full">
+            <img src="https://picsum.photos/200/300/" alt="user avatar" />
           </div>
         </div>
         <div className="flex flex-col flex-1">
@@ -22,4 +19,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default UserChat;
