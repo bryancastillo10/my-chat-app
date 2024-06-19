@@ -1,4 +1,5 @@
 import Sidebar from "./Sidebar";
+import MainWindow from "./MainWindow";
 
 const Home = () => {
   return (
@@ -7,8 +8,10 @@ const Home = () => {
       bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0
     "
     >
-      <Sidebar />
-      {/* <MessageContainer/> */}
+      <div className="flex gap-2">
+        <Sidebar />
+        <MainWindow />
+      </div>
     </div>
   );
 };
