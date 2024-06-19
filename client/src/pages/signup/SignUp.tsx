@@ -5,11 +5,7 @@ const SignUp = () => {
   return (
     <div className="flex flex-col justify-center items-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-white/10 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0">
-        <Heading
-          isSignUpPage
-          header="Get Started"
-          subHeader="Register Here"
-        />
+        <Heading isSignUpPage header="Get Started" subHeader="Register Here" />
 
         <form>
           {/* Fullname */}
@@ -29,7 +25,7 @@ const SignUp = () => {
           />
 
           {/* Password */}
-            <FieldInput
+          <FieldInput
             isSignUpPage
             textLabel="Password"
             type="password"
@@ -48,14 +44,16 @@ const SignUp = () => {
           <h1 className="mt-2 indent-2 text-amber-500">Gender</h1>
           <GenderCheckbox />
 
-          <a
-            href="#"
-            className="text-sm hover:underline hover:text-green-400 mt-2 inline-block"
-          >
-            "Already have an account?"
-          </a>
+          <p className="my-4 text-amber-500">
+            Already have an account? &nbsp;
+            <a href="#" className="text-link text-sm before:bg-amber-500">
+              Login
+            </a>
+          </p>
           <div className="">
-            <button className="btn btn-block btn-sm mt-2">Sign Up</button>
+            <button className="btn btn-block btn-sm mt-2 bg-amber-600 text-white">
+              Sign Up
+            </button>
           </div>
         </form>
       </div>
