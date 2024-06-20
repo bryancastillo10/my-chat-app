@@ -1,5 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useAuthContext } from "./useAuthContext";
 
 interface signUpProps {
   fullName: string;
@@ -11,6 +12,7 @@ interface signUpProps {
 
 const useSignUp = () => {
   const [loading, setLoading] = useState<boolean>(false);
+  const { setAuthUser } = useAuthContext();
 
   const signUp = async (signUpData: signUpProps) => {
     const success = handleInputErrors(signUpData);
@@ -22,9 +24,15 @@ const useSignUp = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(signUpData),
       });
-
+    
       const data = await res.json();
-      console.log(data);
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      localStorage.setItem("app-user", JSON.stringify(data))
+      setAuthUser(data);
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.message);
