@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 
 import GenderCheckbox from "./GenderCheckbox";
 import { FieldInput, Heading } from "../../components";
+import useSignUp from "../../hooks/useSignUp";
 
 const SignUp = () => {
+  const {  signUp } = useSignUp();
   const [signUpData, setSignUpData] = useState({
     fullName: "",
     username: "",
@@ -28,10 +30,11 @@ const SignUp = () => {
   );
 
   const handleSubmit = useCallback(
-    (e: MouseEvent<HTMLButtonElement>) => {
+    async (e: MouseEvent<HTMLButtonElement>) => {
       e.preventDefault();
+      await signUp(signUpData);
     },
-    [signUpData]
+    [signUp, signUpData]
   );
 
   return (
