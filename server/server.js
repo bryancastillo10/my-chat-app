@@ -22,9 +22,9 @@ app.use(express.json()); // to parse the incoming requests with JSON payloads
 app.use(cookieParser());
 
 // Routes
-app.use("/auth", authRoutes);
-app.use("/messages", messagesRoutes);
-app.use("/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/messages", messagesRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(PORT, () => {
   connectToDb();
