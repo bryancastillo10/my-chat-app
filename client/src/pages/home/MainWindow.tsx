@@ -1,13 +1,24 @@
 import InputMessage from "../../components/InputMessage";
 import Messages from "../../components/Messages";
 import { Rocket } from "lucide-react";
+import useConversation from "../../store/useConversation";
+import { useEffect } from "react";
 
 const MainWindow = () => {
+  const { selectedChat, setSelectedChat } = useConversation();
+
+  // Unmount cleaning up the selectedChat state when logout
+  useEffect(() => {
+    return () => setSelectedChat(null);
+  }, [setSelectedChat]);
+
   const messageBox = (
     <>
       <div className="bg-slate-500 px-4 py-2 mb-2">
         <span className="label-text">To:</span>
-        <span className="text-gray-900 font-bold">John America</span>
+        <span className="text-gray-900 font-bold">
+          &nbsp; {selectedChat?.fullName}
+        </span>
       </div>
 
       <Messages />
@@ -27,10 +38,9 @@ const MainWindow = () => {
     </>
   );
 
-  const isStartScreen = true;
   return (
     <div className="md:min-w-[450px] flex flex-col border rounded-md">
-      {isStartScreen ? defaultHome : messageBox};
+      {selectedChat ? messageBox : defaultHome};
     </div>
   );
 };
