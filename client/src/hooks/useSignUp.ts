@@ -16,7 +16,8 @@ const useSignUp = () => {
 
   const signUp = async (signUpData: signUpProps) => {
     const success = handleInputErrors(signUpData);
-    if (!success) return;
+    if (!success) return toast("🧑‍🚀");
+    setLoading(true);
 
     try {
       const res = await fetch("/api/auth/signup", {
@@ -24,16 +25,16 @@ const useSignUp = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(signUpData),
       });
-    
+
       const data = await res.json();
       if (data.error) {
         throw new Error(data.error);
       }
 
-      localStorage.setItem("app-user", JSON.stringify(data))
+      localStorage.setItem("app-user", JSON.stringify(data));
       setAuthUser(data);
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.message);
     } finally {
