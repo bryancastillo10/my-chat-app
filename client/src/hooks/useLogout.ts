@@ -20,6 +20,7 @@ const useLogout = () => {
       }
       localStorage.removeItem("app-user");
       setAuthUser(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.message);
     } finally {
