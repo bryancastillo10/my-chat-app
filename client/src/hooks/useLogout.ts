@@ -13,6 +13,9 @@ const useLogout = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
+      if (!res.ok) {
+        throw new Error('Failed to logout');
+      }
 
       const data = await res.json();
       if (data.error) {

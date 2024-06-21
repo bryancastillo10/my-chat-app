@@ -29,9 +29,12 @@ const useLogin = () => {
 
       localStorage.setItem("app-user", JSON.stringify(data));
       setAuthUser(data);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        throw new Error("An unknown error occured");
+      }
     } finally {
       setLoading(false);
     }

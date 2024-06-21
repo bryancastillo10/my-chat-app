@@ -15,6 +15,9 @@ const useSendMessage = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message })
             })
+            if (!res.ok) {
+                throw new Error('Failed to post the data');
+            }
 
             const data = await res.json();
             if (!data) {
@@ -24,9 +27,12 @@ const useSendMessage = () => {
             setMessages([...messages, data.message]);
 
         }
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        catch (error:any) {
-            toast.error(error.message);
+        catch (error:unknown) {
+            if (error instanceof Error) {
+                toast.error(error.message);
+            } else {
+                toast.error('An unknown error occurred');
+            }
         } finally {
             setLoading(false);
         }
