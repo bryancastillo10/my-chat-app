@@ -1,4 +1,4 @@
-import { useState, useCallback, ChangeEvent, MouseEvent } from "react";
+import { useState, useCallback, ChangeEvent, FormEvent } from "react";
 import { Link } from "react-router-dom";
 
 import GenderCheckbox from "./GenderCheckbox";
@@ -6,7 +6,7 @@ import { FieldInput, Heading } from "../../components";
 import useSignUp from "../../hooks/useSignUp";
 
 const SignUp = () => {
-  const {  signUp } = useSignUp();
+  const { loading, signUp } = useSignUp();
   const [signUpData, setSignUpData] = useState({
     fullName: "",
     username: "",
@@ -30,7 +30,7 @@ const SignUp = () => {
   );
 
   const handleSubmit = useCallback(
-    async (e: MouseEvent<HTMLButtonElement>) => {
+    async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       await signUp(signUpData);
     },
@@ -42,7 +42,7 @@ const SignUp = () => {
       <div className="w-full p-6 rounded-lg shadow-md bg-white/10 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0">
         <Heading isSignUpPage header="Get Started" subHeader="Register Here" />
 
-        <form>
+        <form onSubmit={handleSubmit}>
           {/* Fullname */}
           <FieldInput
             id="fullName"
@@ -102,10 +102,14 @@ const SignUp = () => {
           </p>
           <div className="">
             <button
-              onClick={handleSubmit}
+              disabled={loading}
               className="btn btn-block btn-sm mt-2 bg-amber-600 text-white"
             >
-              Sign Up
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </div>
         </form>
