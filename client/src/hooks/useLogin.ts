@@ -29,6 +29,7 @@ const useLogin = () => {
 
       localStorage.setItem("app-user", JSON.stringify(data));
       setAuthUser(data);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.message);
     } finally {
