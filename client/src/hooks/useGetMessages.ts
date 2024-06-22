@@ -14,7 +14,7 @@ const useGetMessages = () => {
                     throw new Error('Failed to fetch the messages');
                 }
                 const data = await res.json();
-                setMessages(data.messages);
+                setMessages(data);
             }
             catch (error: unknown) {
                 if (error instanceof Error) {
@@ -31,6 +31,6 @@ const useGetMessages = () => {
         }
     }, [selectedChat, setMessages])
 
-    return { loading, messages };
+    return { loading, messages: messages || [] };
 };
 export default useGetMessages;
