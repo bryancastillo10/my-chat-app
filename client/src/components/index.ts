@@ -4,6 +4,7 @@ import SearchInput from "./SearchInput";
 import Conversations from "./Conversations";
 import Button from "./Button";
 import InputMessage from "./InputMessage";
+import MessageSkeleton from "./MessageSkeleton";
 
 export {
   FieldInput,
@@ -12,4 +13,5 @@ export {
   Conversations,
   Button,
   InputMessage,
+  MessageSkeleton,
 };

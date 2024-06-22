@@ -11,11 +11,21 @@ export type userData = {
   username: string;
 } | null;
 
+export type messageData = {
+  __v: number;
+  _id: string;
+  createdAt: string;
+  message: string;
+  receiverId: string;
+  senderId: string;
+  updatedAt: string;
+} | null;
+
 type ConversationStore = {
   selectedChat: userData;
   setSelectedChat: (selectedChat: userData) => void;
-  messages: string[];
-  setMessages: (messages: string[]) => void;
+  messages: messageData[];
+  setMessages: (messages: messageData[]) => void;
 };
 
 const useConversation = create<ConversationStore>()((set) => ({

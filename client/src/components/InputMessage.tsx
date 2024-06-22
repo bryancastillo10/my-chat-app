@@ -9,17 +9,20 @@ interface InputMessageProps {
 
 const InputMessage = ({ type, placeholder }: InputMessageProps) => {
   const { loading, sendMessage } = useSendMessage();
+  
   const [message, setMessage] = useState<string>("");
+  const handleMessageInput = useCallback((e:ChangeEvent<HTMLInputElement>) => {
+    setMessage(e.target.value);
+  }, []);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!message) return;
+    if (!message.trim()) return;
 
     await sendMessage(message);
     setMessage("");
   }
-  const handleMessageInput = useCallback((e:ChangeEvent<HTMLInputElement>) => {
-    setMessage(e.target.value);
-  }, []);
+
   return (
     <form className="px-4 my-3" onSubmit={handleSubmit}>
       <div className="relative w-full">
@@ -32,7 +35,8 @@ const InputMessage = ({ type, placeholder }: InputMessageProps) => {
         />
         <button
           type="submit"
-          className="absolute inset-y-0 end-0 flex items-center pe-3"
+          disabled={loading}
+          className="absolute inset-y-0 end-0 flex items-center pe-3 hover:scale-110 ease-out"
         >
           {loading ? <div className="loading loading-spinner"/>:<Send color="#fff" />}
         </button>
