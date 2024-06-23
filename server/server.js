@@ -7,10 +7,10 @@ import authRoutes from "./routes/auth.routes.js";
 import messagesRoutes from "./routes/messages.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import connectToDb from "./db/connectMongo.js";
+import { app, server } from "./socket/socket.js";
 
 // Declared Variables
 dotenv.config();
-const app = express();
 const PORT = process.env.PORT || 5000;
 
 // app.get("/", (req, res) => {
@@ -26,7 +26,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messagesRoutes);
 app.use("/api/users", userRoutes);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToDb();
   console.log(`Listening on port ${PORT}`);
 });
