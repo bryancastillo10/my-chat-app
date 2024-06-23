@@ -13,12 +13,18 @@ export const SocketContextProvider = ({ children }: ContextProviderProps) => {
 
     useEffect(() => {
         if (authUser) {
-            const socketInstance = io("http://localhost:3000");
+            const socketInstance = io("http://localhost:3000", {
+                query: {
+                    userId: authUser._id
+                }
+            });
             setSocket(socketInstance);
 
-            socketInstance.on("Get Online Users", (users: string[]) => {
+            socketInstance.on("getOnlineUsers", (users) => {
                 setOnlineUsers(users);
             });
+
+
         return () => {
             socketInstance.close();
         };
@@ -28,7 +34,7 @@ export const SocketContextProvider = ({ children }: ContextProviderProps) => {
                     setSocket(null);
             }
             }
-  }, [socket,authUser]);
+  }, [authUser]);
 
     const contextValues = { socket, onlineUsers };
     

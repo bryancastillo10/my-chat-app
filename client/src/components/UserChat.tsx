@@ -1,3 +1,4 @@
+import { useSocketContext } from "../hooks/useSocketContext";
 import useConversation from "../store/useConversation";
 import { userData } from "../store/useConversation";
 
@@ -10,6 +11,9 @@ interface UserChatProps {
 const UserChat = ({ conversation, emoji, lastIndex }: UserChatProps) => {
   const { selectedChat, setSelectedChat } = useConversation();
   const isChatSelected = selectedChat?._id === conversation?._id;
+  const { onlineUsers } = useSocketContext();
+
+    const isOnline = onlineUsers.includes(conversation?._id ?? '');
 
   return (
     <>
@@ -20,7 +24,7 @@ const UserChat = ({ conversation, emoji, lastIndex }: UserChatProps) => {
         `}
         onClick={() => setSelectedChat(conversation)}
       >
-        <div className="avatar online">
+        <div className={`avatar ${isOnline ? "online" : "" }`}>
           <div className="w-12 rounded-full">
             <img src={conversation?.profilePic} alt="user avatar" />
           </div>
