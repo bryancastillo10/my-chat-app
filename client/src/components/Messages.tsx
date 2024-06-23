@@ -27,6 +27,7 @@ const Messages = () => {
       {/* If there is chat history */}
       {!loading && messages.length > 0 && (
         messages.map((msg, index) => {
+          if (!msg) return null;
           return <div
             key={msg?._id}
             ref={index === messages.length - 1 ? messageEndRef : null}

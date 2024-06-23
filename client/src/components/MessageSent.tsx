@@ -11,11 +11,10 @@ interface MessageSentProps{
 const MessageSent = ({message}: MessageSentProps) => {
   const { authUser } = useAuthContext();
   const { selectedChat } = useConversation();
-  const senderId = message?.senderId || "";
-
+  const senderId = message?.senderId;
   if (!authUser || !selectedChat) { return null }
-
   const fromMessage = senderId === authUser._id;
+
   const timeStamp = message?.createdAt ? getHours(message.createdAt) : "Invalid Date";
 
   // Conditional Styling
@@ -33,7 +32,7 @@ const MessageSent = ({message}: MessageSentProps) => {
         </div>
       </div>
       <div className={`chat-bubble text-white ${chatBgColor}`}>
-        {message?.message}
+        {message?.message || "No Message Content"}
       </div>
       <div className="chat-footer opacity-50 text-xs flex gap-1 items-center text-white">
         {timeStamp}
