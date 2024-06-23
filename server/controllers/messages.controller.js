@@ -1,5 +1,6 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 export const sendMessage = async (req, res) => {
   try {
@@ -28,14 +29,19 @@ export const sendMessage = async (req, res) => {
       conversation.messages.push(newMessage._id);
     }
 
-    // Socket IO Functionality would be here
-
     // This code would work but slower
     // await conversation.save();
     // await newMessage.save();
 
     // To optimize asynchronus await
     await Promise.all([conversation.save(), newMessage.save()]);
+
+    // Socket IO Functionality
+    // io.to(id).emit() is the way to send events to a specifc client
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     res.status(201).json({ message: "Message sent successfully" });
   } catch (error) {
