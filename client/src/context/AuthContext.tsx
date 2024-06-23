@@ -1,21 +1,5 @@
-import React, { Dispatch, ReactNode, createContext, useState } from "react";
-
-interface ContextProviderProps{
-    children: ReactNode;
-}
-
-
-type AuthUser = {
-    _id: string;
-    fullName: string;
-    profilePic: string;
-    username: string;
-}
-
-interface AuthContextProps {
-    authUser: AuthUser | null;
-    setAuthUser: Dispatch<React.SetStateAction<AuthUser | null>>;
-}
+import {  createContext, useState } from "react";
+import { AuthContextProps, AuthUser, ContextProviderProps } from "./type";
 
 export const AuthContext = createContext({} as AuthContextProps);
 
