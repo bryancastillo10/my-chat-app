@@ -5,7 +5,7 @@ interface CheckboxProps {
 
 const GenderCheckbox = ({ value, onChange }: CheckboxProps) => {
   return (
-    <div className="flex justify-start gap-6">
+    <div className="flex justify-center gap-6">
       <div className="form-control">
         <label
           className={`label gap-2 cursor-pointer ${
