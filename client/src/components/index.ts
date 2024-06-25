@@ -6,6 +6,7 @@ import Button from "./Button";
 import InputMessage from "./InputMessage";
 import MessageSkeleton from "./MessageSkeleton";
 import Avatar from "./Avatar";
+import UserSettings from "./UserSettings";
 
 export {
   FieldInput,
@@ -15,5 +16,6 @@ export {
   Button,
   InputMessage,
   MessageSkeleton,
-  Avatar
+  Avatar,
+  UserSettings
 };
