@@ -5,6 +5,7 @@ import Conversations from "./Conversations";
 import Button from "./Button";
 import InputMessage from "./InputMessage";
 import MessageSkeleton from "./MessageSkeleton";
+import Avatar from "./Avatar";
 
 export {
   FieldInput,
@@ -14,4 +15,5 @@ export {
   Button,
   InputMessage,
   MessageSkeleton,
+  Avatar
 };
