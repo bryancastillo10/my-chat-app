@@ -5,7 +5,7 @@ import { getRandomEmoji } from "../utils/emoji";
 const Conversations = () => {
   const { loading, conversations } = useGetConversations();
   return (
-    <div className="flex flex-col overflow-auto py-2">
+    <div className="flex flex-col overflow-y-scroll py-2">
       {conversations.map((convo, i) => (
         <UserChat
           key={i}
