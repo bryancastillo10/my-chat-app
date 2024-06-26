@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { userData } from "../store/useConversation";
 
-
 const useGetConversations = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [conversations, setConversations] = useState<userData[]>([]);
@@ -11,7 +10,7 @@ const useGetConversations = () => {
     const getConversations = async () => {
       setLoading(true);
       try {
-        const res = await fetch("/api/users");
+        const res = await fetch("/api/users/connections");
         if (!res.ok) {
           throw new Error("Failed to fetch user conversations");
         }
@@ -21,18 +20,17 @@ const useGetConversations = () => {
           throw new Error(data.error);
         }
         setConversations(data);
-
       } catch (error: unknown) {
-        if (error instanceof Error){
+        if (error instanceof Error) {
           toast.error(error.message);
-        }else {
+        } else {
           throw new Error("An unknown error has occured");
         }
       } finally {
         setLoading(false);
       }
     };
-    
+
     getConversations();
   }, []);
 
