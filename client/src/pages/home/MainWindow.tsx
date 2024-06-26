@@ -1,9 +1,9 @@
-import InputMessage from "../../components/InputMessage";
 import Messages from "../../components/Messages";
 import { Rocket } from "lucide-react";
 import useConversation from "../../store/useConversation";
 import { useEffect } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { InputMessage } from "../../components";
 
 const MainWindow = () => {
   const { authUser } = useAuthContext();
@@ -16,13 +16,14 @@ const MainWindow = () => {
 
   const messageBox = (
     <>
-      <div className="px-4 py-2 mb-2">
-        <span className="label-text">To:</span>
-        <span className="text-gray-900 font-bold">
-          &nbsp; {selectedChat?.fullName}
-        </span>
+      <div className="flex px-4 mt-2">
+        <p className="label-text text-[#F4F3F2]">
+          To:
+          <span className="text-amber-500 font-bold">
+            &nbsp; {selectedChat?.fullName}
+          </span>
+        </p>
       </div>
-
       <Messages />
       <InputMessage type="text" placeholder="Send a message..." />
     </>
@@ -30,10 +31,16 @@ const MainWindow = () => {
 
   const defaultHome = (
     <>
-      <div className="flex justify-center items-center w-full h-full">
+      <div className="flex justify-center items-center w-full min-h-[60vh]">
         <div className="flex flex-col items-center gap-4 px-4 text-center sm:text-lg md:text-xl text-gray-200 font-semibold">
           <Rocket color="#fff" size="64" />
-          <p>Welcome <span className="text-2xl font-bold text-indigo-400">{authUser?.fullName}</span> !🧑‍🚀</p>
+          <p>
+            Welcome{" "}
+            <span className="text-2xl font-bold text-indigo-400">
+              {authUser?.fullName}
+            </span>{" "}
+            !🧑‍🚀
+          </p>
           <p>Start messaging by selecting users on the sidebar!</p>
         </div>
       </div>
@@ -42,7 +49,7 @@ const MainWindow = () => {
 
   return (
     <div className="md:min-w-[450px] flex flex-col">
-      {selectedChat ? messageBox : defaultHome};
+      {selectedChat ? messageBox : defaultHome}
     </div>
   );
 };
