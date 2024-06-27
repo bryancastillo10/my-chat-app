@@ -5,7 +5,7 @@ const maleProfilePictures = [
   "https://avatar.iran.liara.run/public/7",
   "https://avatar.iran.liara.run/public/21",
   "https://avatar.iran.liara.run/public/49",
-  "https://avatar.iran.liara.run/public/41",
+  "https://avatar.iran.liara.run/public/45",
   "https://avatar.iran.liara.run/public/47",
   "https://avatar.iran.liara.run/public/18",
   "https://avatar.iran.liara.run/public/14",
