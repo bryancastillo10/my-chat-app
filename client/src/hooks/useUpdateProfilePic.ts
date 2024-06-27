@@ -23,7 +23,7 @@ const useUpdateProfilePic = () => {
         throw new Error("Failed to update your profile picture");
       }
       const data = await res.json();
-      updateAuthUser(data.user.profilePic);
+      updateAuthUser({ ...data.user.profilePic, profilePic: selectedProfPic });
 
       toast.success("Profile picture successfully changed");
     } catch (error) {
