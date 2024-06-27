@@ -10,6 +10,10 @@ const UpdateProfilePicModal = () => {
       onClose={updateProfilePic.onClose}
       title="Update Profile Picture"
       subtitle="Choose from the following profile picture"
+      actionLabel="Update Profile Picture"
+      action={() => {}}
+      secondaryAction={updateProfilePic.onClose}
+      secondaryActionLabel="Cancel"
     />
   );
 };
