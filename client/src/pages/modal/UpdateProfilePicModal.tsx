@@ -1,10 +1,10 @@
 import Modal from "./Modal";
-import useUpdateProfilePic from "../../store/useUpdateProfilePic";
+import useProfilePicModal from "../../store/useProfilePicModal";
 import useProfilePicChoices from "../../hooks/useProfilePicChoices";
 
 const UpdateProfilePicModal = () => {
   const { isOpen, onClose, selectedProfPic, setSelectedProfPic } =
-    useUpdateProfilePic();
+    useProfilePicModal();
   const { loading, profPicChoices } = useProfilePicChoices();
 
   const handleSelectPic = (pic: string) => {
