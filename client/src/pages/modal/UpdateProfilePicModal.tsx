@@ -8,6 +8,8 @@ const UpdateProfilePicModal = () => {
     <Modal
       isOpen={updateProfilePic.isOpen}
       onClose={updateProfilePic.onClose}
+      title="Update Profile Picture"
+      subtitle="Choose from the following profile picture"
     />
   );
 };
