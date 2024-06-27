@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import UserSettings from "./UserSettings";
 import { UserRoundCheck, Cog, LogOut } from "lucide-react";
 import useLogout from "../hooks/useLogout";
-import useUpdateProfilePic from "../store/useUpdateProfilePic";
+import useProfilePicModal from "../store/useProfilePicModal";
 
 interface AvatarProps {
   currentUser: string | undefined;
@@ -10,7 +10,7 @@ interface AvatarProps {
 }
 
 const Avatar = ({ currentUser, profilePic }: AvatarProps) => {
-  const updateProfilePic = useUpdateProfilePic();
+  const profilePicModal = useProfilePicModal();
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const { loading, logOut } = useLogout();
 
@@ -48,7 +48,7 @@ const Avatar = ({ currentUser, profilePic }: AvatarProps) => {
         <div className="absolute z-50 glassmorphism shadow-md w-[150px] md:3/4  right-0 top-12 text-sm">
           <div className="flex flex-col cursor-pointer">
             <UserSettings
-              onClick={updateProfilePic.onOpen}
+              onClick={profilePicModal.onOpen}
               icon={UserRoundCheck}
               label="Avatar"
             />

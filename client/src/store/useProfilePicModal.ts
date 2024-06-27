@@ -8,7 +8,7 @@ type UpdateProfilePicStore = {
   onClose: () => void;
 };
 
-const useUpdateProfilePic = create<UpdateProfilePicStore>()((set) => ({
+const useProfilePicModal = create<UpdateProfilePicStore>()((set) => ({
   // state for selecting a profile picture
   selectedProfPic: null,
   setSelectedProfPic: (profPic: string) => set({ selectedProfPic: profPic }),
@@ -19,4 +19,4 @@ const useUpdateProfilePic = create<UpdateProfilePicStore>()((set) => ({
   onClose: () => set({ isOpen: false }),
 }));
 
-export default useUpdateProfilePic;
+export default useProfilePicModal;

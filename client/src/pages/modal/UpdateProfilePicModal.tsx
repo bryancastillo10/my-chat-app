@@ -1,14 +1,20 @@
 import Modal from "./Modal";
-import useUpdateProfilePic from "../../store/useUpdateProfilePic";
+import useProfilePicModal from "../../store/useProfilePicModal";
 import useProfilePicChoices from "../../hooks/useProfilePicChoices";
+import useUpdateProfilePic from "../../hooks/useUpdateProfilePic";
 
 const UpdateProfilePicModal = () => {
   const { isOpen, onClose, selectedProfPic, setSelectedProfPic } =
-    useUpdateProfilePic();
+    useProfilePicModal();
   const { loading, profPicChoices } = useProfilePicChoices();
+  const { isUpdating, updateProfilePicture } = useUpdateProfilePic();
 
   const handleSelectPic = (pic: string) => {
     setSelectedProfPic(pic);
+  };
+
+  const handleUpdateProfilePic = async () => {
+    await updateProfilePicture();
   };
 
   const body = (
@@ -36,11 +42,12 @@ const UpdateProfilePicModal = () => {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
+      disabled={isUpdating}
       title="You can Change Profile Picture"
       subtitle="Choose from the following profile picture"
       body={body}
       actionLabel="Update Profile Picture"
-      action={() => {}}
+      action={handleUpdateProfilePic}
       secondaryAction={onClose}
       secondaryActionLabel="Cancel"
     />

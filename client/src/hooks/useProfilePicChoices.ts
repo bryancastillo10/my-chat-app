@@ -6,18 +6,18 @@ const useProfilePicChoices = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [profPicChoices, setProfPicChoices] = useState<string[]>([]);
   const { authUser } = useAuthContext();
-  const userId = authUser?._id;
+  const currentUserId = authUser?._id;
 
   useEffect(() => {
-    if (!userId) return;
+    if (!currentUserId) return;
 
-    const getProfilePicChoices = async (userId: string) => {
+    const getProfilePicChoices = async (currentUserId: string) => {
       setLoading(true);
       try {
         const res = await fetch(`/api/users/profile-pictures`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ userId }),
+          body: JSON.stringify({ currentUserId }),
         });
         if (!res.ok) {
           throw new Error("Failed to fetch the data");
@@ -39,8 +39,8 @@ const useProfilePicChoices = () => {
       }
     };
 
-    getProfilePicChoices(userId);
-  }, [userId]);
+    getProfilePicChoices(currentUserId);
+  }, [currentUserId]);
 
   return { loading, profPicChoices };
 };
