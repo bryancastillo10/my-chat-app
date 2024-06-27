@@ -18,7 +18,6 @@ const Button = ({ type, variant, action, children }: ButtonProps) => {
         return "bg-sky-500";
     }
   };
-
   return (
     <button
       type={type}

@@ -3,7 +3,6 @@ import useGetMessages from "../hooks/useGetMessages";
 import MessageSent from "./MessageSent";
 import MessageSkeleton from "./MessageSkeleton";
 import useListenMessages from "../hooks/useListenMessages";
-import InputMessage from "./InputMessage";
 
 const Messages = () => {
   const { loading, messages } = useGetMessages();
@@ -20,7 +19,6 @@ const Messages = () => {
     <div className="flex flex-col items-center justify-center max-w-[90%] min-h-[50vh] mx-auto p-4">
       <h1 className="font-bold text-xl">Empty Inbox 😔</h1>
       <p className="text-center">Send a message to start conversation ✉️</p>
-      <InputMessage type="text" placeholder="Send a message..." />
     </div>
   );
 
