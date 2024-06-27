@@ -1,25 +1,31 @@
+import { ReactNode } from "react";
+
 interface ButtonProps {
-  loading?: boolean;
-  label: string;
-  icon?: JSX.Element;
+  type: "submit" | "button" | "reset";
+  variant?: string;
   action: () => void;
+  children: ReactNode;
 }
 
-const Button = ({ action, loading, label, icon: Icon }: ButtonProps) => {
+const Button = ({ type, variant, action, children }: ButtonProps) => {
+  const getClassName = (variant: string | undefined) => {
+    switch (variant) {
+      case "accept":
+        return "bg-emerald-600 hover:bg-emerald-700";
+      case "cancel":
+        return "bg-rose-500 hover:bg-rose-700";
+      default:
+        return "bg-sky-500";
+    }
+  };
+
   return (
     <button
+      type={type}
+      className={`px-4 py-2 rounded-2xl text-white ${getClassName(variant)}`}
       onClick={action}
-      className="mt-auto group flex items-center gap-1 hover:bg-rose-500 
-     ease-out duration-500 max-w-fit p-2 rounded-2xl cursor-pointer"
     >
-      {!loading ? (
-        <>
-          {Icon}
-          <p className="hidden group-hover:block text-white ">{label}</p>
-        </>
-      ) : (
-        <span className="loading loading-spinner"></span>
-      )}
+      {children}
     </button>
   );
 };
