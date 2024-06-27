@@ -49,7 +49,9 @@ const Modal = ({
       {/* Modal Content */}
       <div
         className={`absolute z-50 top-12  translate duration-300 w-[85%] h-full ${
-          showModal ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+          showModal
+            ? "translate-y-0 opacity-100 pointer-events-auto"
+            : "translate-y-full opacity-0 pointer-events-none"
         }`}
       >
         <div className="relative translate md:h-auto border-0 rounded-lg shadow-lg flex flex-col w-[80%] mx-auto modal-glassmorphism outline-none focus:outline-none">
