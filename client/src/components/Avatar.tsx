@@ -25,7 +25,7 @@ const Avatar = ({ currentUser, profilePic }: AvatarProps) => {
   if (profilePic === undefined) {
     return "";
   }
-  console.log(updateProfilePic.isOpen);
+
   return (
     <div className="relative flex items-center gap-2">
       <div className="flex flex-col justify-center items-center">

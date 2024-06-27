@@ -77,7 +77,7 @@ const Modal = ({
                 {actionLabel}
               </Button>
               {secondaryAction && secondaryActionLabel && (
-                <Button type="button" variant="cancel" action={() => {}}>
+                <Button type="button" variant="cancel" action={secondaryAction}>
                   {secondaryActionLabel}
                 </Button>
               )}
