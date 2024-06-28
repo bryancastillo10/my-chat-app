@@ -1,8 +1,9 @@
 import { useCallback, useState } from "react";
 import UserSettings from "./UserSettings";
-import { UserRoundCheck, Cog, LogOut } from "lucide-react";
+import { UserRoundCheck, Image, LogOut } from "lucide-react";
 import useLogout from "../hooks/useLogout";
 import useProfilePicModal from "../store/useProfilePicModal";
+import useViewProfileModal from "../store/useViewProfileModal";
 
 interface AvatarProps {
   currentUser: string | undefined;
@@ -11,6 +12,7 @@ interface AvatarProps {
 
 const Avatar = ({ currentUser, profilePic }: AvatarProps) => {
   const profilePicModal = useProfilePicModal();
+  const viewProfileModal = useViewProfileModal();
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const { loading, logOut } = useLogout();
 
@@ -45,16 +47,24 @@ const Avatar = ({ currentUser, profilePic }: AvatarProps) => {
         />
       </div>
       {openMenu && (
-        <div className="absolute z-50 glassmorphism shadow-md w-[150px] md:3/4  right-0 top-12 text-sm">
+        <div className="absolute z-50 glassmorphism shadow-md w-[240px] md:max-w-3/4  -right-[20px] top-11 text-sm">
           <div className="flex flex-col cursor-pointer">
             <UserSettings
               onClick={profilePicModal.onOpen}
-              icon={UserRoundCheck}
-              label="Avatar"
+              icon={Image}
+              label="Change Profile Picture"
             />
-            <UserSettings onClick={() => {}} icon={Cog} label="Settings" />
-            <UserSettings onClick={logOut} icon={LogOut} label="Logout" />
-            {loading && <span className="loading loading-spinner"></span>}
+            <UserSettings
+              onClick={viewProfileModal.onOpen}
+              icon={UserRoundCheck}
+              label="View Profile"
+            />
+            <UserSettings
+              onClick={logOut}
+              icon={LogOut}
+              label="Logout"
+              loading={loading}
+            />
           </div>
         </div>
       )}

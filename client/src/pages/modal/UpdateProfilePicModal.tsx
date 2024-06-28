@@ -43,7 +43,7 @@ const UpdateProfilePicModal = () => {
       isOpen={isOpen}
       onClose={onClose}
       disabled={isUpdating}
-      title="You can Change Profile Picture"
+      title="Update Profile Picture"
       subtitle="Choose from the following profile picture"
       body={body}
       actionLabel="Update Profile Picture"
