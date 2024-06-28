@@ -11,3 +11,5 @@ const router = express.Router();
 router.post("/add", protectRoute, addInfo);
 router.put("/update/:id", protectRoute, updateInfo);
 router.delete("/delete/:id", protectRoute, deleteInfo);
+
+export default router;

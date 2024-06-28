@@ -1,4 +1,4 @@
-import ProfInfo from "../models/profileinfo.model";
+// import ProfInfo from "../models/profileinfo.model";
 
 export const addInfo = async (req, res) => {
   console.log("Add Info Endpoint");
