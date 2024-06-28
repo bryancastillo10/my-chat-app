@@ -25,6 +25,7 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messagesRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/profileinfo", profileRoutes);
 
 server.listen(PORT, () => {
   connectToDb();
