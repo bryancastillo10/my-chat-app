@@ -22,12 +22,24 @@ export const addInfo = async (req, res) => {
   }
 };
 
+export const getInfo = async (req, res) => {
+  try {
+    const loggedInId = req.params.id;
+    const info = await ProfInfo.findByIdAndUpdate(loggedInId);
+    if (!info) {
+      return res.status(404).json({error:"Profile information not found." })
+    }
+    res.status(200).json(info);
+  } catch (error) {
+    console.log("Error in getInfo controller", error.message);
+    res.status(500).json({ error: "Something went wrong" });
+    }
+}
+
 export const updateInfo = async (req, res) => {
   try {
     const loggedInId = req.params.id;
     const { birthday, hobbies, motto } = req.body;
-
-
 
     if (hobbies && (hobbies.length < 1 || hobbies.length > 3)) {
       return res.status(400).json({ error: "Please select between 1 and 3 hobbies." });
@@ -49,7 +61,7 @@ export const updateInfo = async (req, res) => {
     });
   } catch (error) {
     console.log("Error in updateInfo controller", error.message);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "Something went wrong" });
   }
 };
 
@@ -65,6 +77,6 @@ export const deleteInfo = async (req, res) => {
   }
   catch (error) {
     console.log("Error in deleteInfo controller", error.message);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "Something went wrong" });
   }
 };
