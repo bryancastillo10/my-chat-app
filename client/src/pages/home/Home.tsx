@@ -2,6 +2,7 @@ import ProfileHeading from "./ProfileHeading";
 import Sidebar from "./Sidebar";
 import MainWindow from "./MainWindow";
 import UpdateProfilePicModal from "../modal/UpdateProfilePicModal";
+import ViewProfileModal from "../modal/ViewProfileModal";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <div className="relative md:flex flex-col">
         <ProfileHeading />
         <UpdateProfilePicModal />
+        <ViewProfileModal />
       </div>
       <div className="flex overflow-y-auto">
         <Sidebar />
