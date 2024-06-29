@@ -5,7 +5,7 @@ interface FieldInputProps {
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   isSignUpPage?: boolean;
-  textLabel: string;
+  textLabel?: string;
   type: string;
   placeholder?: string;
 }

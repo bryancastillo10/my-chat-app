@@ -42,7 +42,7 @@ const Modal = ({
     setTimeout(() => {
       onClose();
     }, 300);
-  }, []);
+  }, [onClose,disabled]);
 
   return (
     <>
@@ -75,7 +75,7 @@ const Modal = ({
           {/* Button Sections */}
           <div className="flex flex-col gap-2 p-6">
             <div className="flex flex-row justify-center items-center gap-4 w-full">
-              <Button type="button" variant="accept" action={action}>
+              <Button disabled={disabled} type="button" variant="accept" action={action}>
                 {actionLabel}
               </Button>
               {secondaryAction && secondaryActionLabel && (
