@@ -1,13 +1,13 @@
 import Modal from "./Modal";
 import useViewProfileModal from "../../store/useViewProfileModal";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import Names from "./Names";
+import { ProfileInfo } from "../../components";
 
 const ViewProfileModal = () => {
   const { authUser } = useAuthContext();
   const { isOpen, onClose } = useViewProfileModal();
   if (authUser === null) return "No User";
-  console.log(authUser.fullName);
+
 
   const body = (
     <div className="flex justify-center items-center gap-4">
@@ -18,17 +18,15 @@ const ViewProfileModal = () => {
           alt={authUser.profilePic}
         />
       </div>
-      <div className="mb-4 items-start">
-        <Names
-          fullName={authUser.fullName}
-          userName={authUser.username}
+      <div className="flex flex-col justify-between gap-1">
+        <ProfileInfo
+          label="Full Name"
+          value={authUser.fullName}
         />
-        {/* <article className="flex items-center gap-2">
-          <p className="font-bold">Describe Yourself:</p>
-          <p>
-            <PencilLine size="18" />
-          </p>
-        </article> */}
+        <ProfileInfo
+          label="Username"
+          value={authUser.username}
+        />
       </div>
     </div>
   );

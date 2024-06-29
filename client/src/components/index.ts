@@ -7,6 +7,7 @@ import InputMessage from "./InputMessage";
 import MessageSkeleton from "./MessageSkeleton";
 import Avatar from "./Avatar";
 import UserSettings from "./UserSettings";
+import ProfileInfo from "./ProfileInfo";
 
 export {
   FieldInput,
@@ -17,5 +18,6 @@ export {
   InputMessage,
   MessageSkeleton,
   Avatar,
-  UserSettings
+  UserSettings,
+  ProfileInfo
 };
