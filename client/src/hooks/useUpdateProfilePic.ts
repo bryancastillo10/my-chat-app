@@ -33,7 +33,7 @@ const useUpdateProfilePic = () => {
         toast.error("An unknown error has occured");
       }
     } finally {
-      setIsUpdating(true);
+      setIsUpdating(false);
     }
   };
   return { isUpdating, updateProfilePicture };

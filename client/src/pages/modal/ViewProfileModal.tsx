@@ -1,13 +1,13 @@
 import Modal from "./Modal";
 import useViewProfileModal from "../../store/useViewProfileModal";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import { PencilLine } from "lucide-react";
+import Names from "./Names";
 
 const ViewProfileModal = () => {
   const { authUser } = useAuthContext();
   const { isOpen, onClose } = useViewProfileModal();
   if (authUser === null) return "No User";
-  console.log(authUser);
+  console.log(authUser.fullName);
 
   const body = (
     <div className="flex justify-center items-center gap-4">
@@ -18,27 +18,17 @@ const ViewProfileModal = () => {
           alt={authUser.profilePic}
         />
       </div>
-      <div className="mb-10 items-start">
-        <article className="flex items-center gap-2">
-          <p className="font-bold">Full Name:</p>
-          <p>{authUser.fullName}</p>
-          <p>
-            <PencilLine size="18" />
-          </p>
-        </article>
-        <article className="flex  items-center gap-2">
-          <p className="font-bold">Username:</p>
-          <p>{authUser.username}</p>
-          <p>
-            <PencilLine size="18" />
-          </p>
-        </article>
-        <article className="flex items-center gap-2">
+      <div className="mb-4 items-start">
+        <Names
+          fullName={authUser.fullName}
+          userName={authUser.username}
+        />
+        {/* <article className="flex items-center gap-2">
           <p className="font-bold">Describe Yourself:</p>
           <p>
             <PencilLine size="18" />
           </p>
-        </article>
+        </article> */}
       </div>
     </div>
   );
