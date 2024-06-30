@@ -12,6 +12,7 @@ const ViewProfileModal = () => {
 
 
   const body = (
+    <div className="max-w-[80%] mx-auto">
     <div className="flex justify-center items-center gap-4">
       <div className="">
         <img
@@ -20,7 +21,7 @@ const ViewProfileModal = () => {
           alt={authUser.profilePic}
         />
       </div>
-      <div className="flex flex-col justify-between gap-1">
+      <div className="flex flex-col gap-0.5">
         <ProfileInfo
           label="Full Name"
           loading={loading}
@@ -34,6 +35,27 @@ const ViewProfileModal = () => {
           field="username"
           value={authUser.username}
           updateAction={updateNames}
+        />
+      </div>
+      </div>
+      <div className="max-w-[70%] mx-auto">
+        <ProfileInfo
+          label="Birthday"
+          field="birthday"
+          value="Birthday"
+          updateAction={()=>{}}
+        />
+        <ProfileInfo
+          label="Hobbies"
+          field="hobbies"
+          value="Hobbies"
+          updateAction={()=>{}}
+        />
+        <ProfileInfo
+          label="Motto"
+          field="motto"
+          value="Motto"
+          updateAction={()=>{}}
         />
       </div>
     </div>
