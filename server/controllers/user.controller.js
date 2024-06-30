@@ -3,7 +3,6 @@ import {
   maleProfilePictures,
   femaleProfilePictures,
 } from "../utils/profilePictures.js";
-import { logoutUser } from "./auth.controller.js";
 
 export const getUsersForSidebar = async (req, res) => {
   try {
@@ -137,7 +136,6 @@ export const deleteAccount = async (req, res) => {
     await User.findByIdAndDelete(userId);
 
     res.status(200).json({message:"Account has been deleted"});
-    logoutUser(req, res);
   } catch (error) {
     console.log("Error in delete account controller", error.message);
     res.status(500).json({ error: "Something went wrong" });

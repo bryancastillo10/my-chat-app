@@ -3,14 +3,21 @@ import useViewProfileModal from "../../store/useViewProfileModal";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { ProfileInfo } from "../../components";
 import useUpdateNames from "../../hooks/useUpdateNames";
+import MoreProfileInfo from "./MoreProfileInfo";
+import useSubModal from "../../store/useSubModal";
 
 const ViewProfileModal = () => {
   const { authUser } = useAuthContext();
   const { isOpen, onClose } = useViewProfileModal();
+  const { onOpen: onOpenSubModal } = useSubModal();
   const { loading, updateNames } = useUpdateNames();
   if (authUser === null) return "No User";
 
-
+  const secondaryButtonClicked = () => {
+    onClose();
+    onOpenSubModal();
+  };
+  
   const body = (
     <div className="max-w-[80%] mx-auto">
     <div className="flex justify-center items-center gap-4">
@@ -38,29 +45,11 @@ const ViewProfileModal = () => {
         />
       </div>
       </div>
-      <div className="max-w-[70%] mx-auto">
-        <ProfileInfo
-          label="Birthday"
-          field="birthday"
-          value="Birthday"
-          updateAction={()=>{}}
-        />
-        <ProfileInfo
-          label="Hobbies"
-          field="hobbies"
-          value="Hobbies"
-          updateAction={()=>{}}
-        />
-        <ProfileInfo
-          label="Motto"
-          field="motto"
-          value="Motto"
-          updateAction={()=>{}}
-        />
-      </div>
+      <MoreProfileInfo/>
     </div>
   );
   return (
+    <>
     <Modal
       isOpen={isOpen}
       onClose={onClose}
@@ -69,7 +58,10 @@ const ViewProfileModal = () => {
       body={body}
       action={onClose}
       actionLabel="Okay"
-    />
+      secondaryAction={secondaryButtonClicked}
+      secondaryActionLabel="Delete Account"
+      />
+    </>
   );
 };
 
