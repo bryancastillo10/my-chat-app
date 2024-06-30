@@ -100,58 +100,35 @@ export const updateProfilePicture = async (req, res) => {
 
 
 export const updateUserProfile = async (req, res) => {
-  try {
-    const loggedInUserId = req.user._id;
+  try
+  {
+    const userId = req.user._id;
     const { fullName, username } = req.body;
 
-    if (!fullName && !username) {
-      return res.status(400).json({ error: "Fullname or username should be provided" });
-    }
+    const dataToUpdate = {}
+    if (fullName !== undefined) { dataToUpdate.fullName = fullName };
+    if (username !== undefined) { dataToUpdate.username = username };
 
-    const updateFields = {};
-    let errorMessage = null;
-
-    if (fullName) {
-      const isExistingFullName = await User.findOne({
-        fullName,
-        _id: { $ne: loggedInUserId }
-      });
-      if (isExistingFullName) {
-        errorMessage = "Full Name already exists in this app";
-      } else {
-        updateFields.fullName = fullName;
-      }
-    }
-
-    if (username && !errorMessage) {
-      const isExistingUsername = await User.findOne({
-        username,
-        _id: { $ne: loggedInUserId }
-      });
-      if (isExistingUsername) {
-        errorMessage = "Username already exists in this app";
-      } else {
-        updateFields.username = username;
-      }
-    }
-
-    if (errorMessage) {
-      return res.status(400).json({ error: errorMessage });
-    }
-
-    const updatedUser = await User.findByIdAndUpdate(
-      loggedInUserId,
-      updateFields,
-      { new: true }
+    const updatedName = await User.findByIdAndUpdate(
+      userId,
+      dataToUpdate,
+      { new: true, runValidators: true }
     );
 
-    res.status(200).json({ updatedUser });
-    
-  } catch (error) {
+    if (!updatedName) {
+      return res.status(404).json({ error:"User not found"});
+    }
+
+    res.status(200).json({
+      message: "Profile successfully updated",
+      updatedName: updatedName
+    });
+  }
+  catch (error) {
     console.log("Error in updateUserProfile controller", error.message);
     res.status(500).json({ error: "Something went wrong" });
   }
-};
+}
 
 export const deleteAccount = async (req, res) => {
   try {

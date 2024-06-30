@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.get("/connections", protectRoute, getUsersForSidebar);
 router.post("/profile-pictures", protectRoute, profilePictureChoices);
-router.put("/update/picture/:id", protectRoute, updateProfilePicture);
+router.put("/update/profilepicture/:id", protectRoute, updateProfilePicture);
 router.put("/update/profile/:id", protectRoute, updateUserProfile);
 router.delete("/delete/account/:id", protectRoute, deleteAccount);
 

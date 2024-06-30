@@ -46,14 +46,14 @@ export const updateInfo = async (req, res) => {
     }
 
 
-    const data = {}
-    if (birthday !== undefined) { data.birthday = birthday };
-    if (hobbies !== undefined) { data.hobbies = hobbies };
-    if (motto !== undefined) { data.motto = motto };
+    const dataToUpdate = {}
+    if (birthday !== undefined) { dataToUpdate.birthday = birthday };
+    if (hobbies !== undefined) { dataToUpdate.hobbies = hobbies };
+    if (motto !== undefined) { dataToUpdate.motto = motto };
 
     const updatedProfile = await ProfInfo.findByIdAndUpdate(
       loggedInId,
-      data,
+      dataToUpdate,
       { new: true, runValidators: true }
     );
 

@@ -13,7 +13,7 @@ const useUpdateProfilePic = () => {
     setIsUpdating(true);
     if (!currentUserId) return;
     try {
-      const res = await fetch(`/api/users/update/picture/${currentUserId}`, {
+      const res = await fetch(`/api/users/update/profilepicture/${currentUserId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ profilePicChoice: selectedProfPic }),
