@@ -3,13 +3,13 @@ import useViewProfileModal from "../../store/useViewProfileModal";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { ProfileInfo } from "../../components";
 import useUpdateNames from "../../hooks/useUpdateNames";
+import MoreProfileInfo from "./MoreProfileInfo";
 
 const ViewProfileModal = () => {
   const { authUser } = useAuthContext();
   const { isOpen, onClose } = useViewProfileModal();
   const { loading, updateNames } = useUpdateNames();
   if (authUser === null) return "No User";
-
 
   const body = (
     <div className="max-w-[80%] mx-auto">
@@ -38,29 +38,11 @@ const ViewProfileModal = () => {
         />
       </div>
       </div>
-      <div className="max-w-[70%] mx-auto">
-        <ProfileInfo
-          label="Birthday"
-          field="birthday"
-          value="Birthday"
-          updateAction={()=>{}}
-        />
-        <ProfileInfo
-          label="Hobbies"
-          field="hobbies"
-          value="Hobbies"
-          updateAction={()=>{}}
-        />
-        <ProfileInfo
-          label="Motto"
-          field="motto"
-          value="Motto"
-          updateAction={()=>{}}
-        />
-      </div>
+      <MoreProfileInfo/>
     </div>
   );
   return (
+    <>
     <Modal
       isOpen={isOpen}
       onClose={onClose}
@@ -69,7 +51,10 @@ const ViewProfileModal = () => {
       body={body}
       action={onClose}
       actionLabel="Okay"
-    />
+      secondaryAction={()=>{}}
+      secondaryActionLabel="Delete Account"
+      />
+    </>
   );
 };
 
