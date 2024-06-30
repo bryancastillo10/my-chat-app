@@ -2,31 +2,46 @@ import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import toast from "react-hot-toast";
 
+export interface UpdateNameParams{
+    fullName?: string;
+    username?: string;
+}
 
-const useUpdateFullname = () => {
+
+const useUpdateNames = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const { authUser, updateAuthUser } = useAuthContext();
     const currentUserId = authUser?._id;
 
-    const updateFullName = async (newFullName: string) => {
+    const updateNames = async ({fullName, username}:UpdateNameParams) => {
         if (!currentUserId) {
             toast.error("Current User ID not Found");
+        } 
+        
+        if (!fullName && !username) {
+            toast.error("No username or full name provided");
+            return;
         }
+
         setLoading(true);
         try {
-            const res = await fetch(`/api/users/update/username/${currentUserId}`,
+            const res = await fetch(`/api/users/update/profile/${currentUserId}`,
                 {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ fullName: newFullName })
+                    body: JSON.stringify({ fullName, username })
                 }
             );
             if (!res.ok) {
-                throw new Error("Failed to update your full name");
+                throw new Error("Failed to update your name");
             }
-            const data = await res.json();
-            updateAuthUser({ ...data });
 
+            const data = await res.json();
+
+            updateAuthUser({
+                ...data.updatedName
+            });
+            toast.success("Updated successfully");
         }
         catch (error) {
             if (error instanceof Error) {
@@ -38,8 +53,8 @@ const useUpdateFullname = () => {
             setLoading(false);
         }
     };
-    return { loading, updateFullName };
+    return { loading, updateNames };
 }
 
-export default useUpdateFullname;
+export default useUpdateNames;
 

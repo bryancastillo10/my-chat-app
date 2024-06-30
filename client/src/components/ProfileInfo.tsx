@@ -2,12 +2,17 @@ import { useState, useCallback, ChangeEvent, FormEvent } from "react";
 import { Edit3 } from "lucide-react";
 import Button from "./Button";
 import FieldInput from "./FieldInput";
+import { UpdateNameParams } from "../hooks/useUpdateNames";
+
 interface ProfileInfoProps{
     label: string;
     value: string;
+    loading: boolean;
+    updateAction: (params: UpdateNameParams) => void;
+    field: 'username' | 'fullName';
 }
 
-const ProfileInfo = ({label,value}:ProfileInfoProps) => {
+const ProfileInfo = ({label,value,loading,updateAction,field}:ProfileInfoProps) => {
     const [openEdit, setOpenEdit] = useState<boolean>(false);
     const [newValue, setNewValue] = useState<string>(value);
 
@@ -19,8 +24,10 @@ const ProfileInfo = ({label,value}:ProfileInfoProps) => {
 
     const handleUpdate = useCallback((e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // await useUpdateNames
-    }, []);
+        const updateParams: UpdateNameParams = { [field]: newValue };
+        updateAction(updateParams);
+        toggleEdit();
+    }, [updateAction,newValue, field, toggleEdit]);
 
     const handleInput = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setNewValue(e.target.value);
@@ -45,12 +52,13 @@ const ProfileInfo = ({label,value}:ProfileInfoProps) => {
             </div>
                 <div className="flex flex-col items-center gap-2">
                 <Button
+                    disabled={loading}
                     type="submit"
                     variant="update"
                 >
                     Update
                 </Button>
-                                <Button
+                <Button
                     type="button"
                     action={toggleEdit}
                     variant="cancel-edit"

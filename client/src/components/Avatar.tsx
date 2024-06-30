@@ -20,13 +20,6 @@ const Avatar = ({ currentUser, profilePic }: AvatarProps) => {
     setOpenMenu(!openMenu);
   }, [openMenu]);
 
-  if (currentUser === undefined) {
-    return "User";
-  }
-
-  if (profilePic === undefined) {
-    return "";
-  }
 
   return (
     <div className="relative flex items-center gap-2">

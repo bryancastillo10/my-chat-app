@@ -3,9 +3,8 @@ import {
   getUsersForSidebar,
   profilePictureChoices,
   updateProfilePicture,
-
+  updateUserProfile,
   deleteAccount,
-  updateUserProfile
 } from "../controllers/user.controller.js";
 import protectRoute from "../middleware/protectRoute.js";
 
