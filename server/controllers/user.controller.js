@@ -99,60 +99,56 @@ export const updateProfilePicture = async (req, res) => {
 };
 
 
-export const updateFullName = async (req, res) => {
+export const updateUserProfile = async (req, res) => {
   try {
     const loggedInUserId = req.user._id;
-    const { fullName } = req.body;
+    const { fullName, username } = req.body;
 
-    const isExistingFullName = await User.findOne({
-      fullName,
-      _id: {
-        $ne: loggedInUserId
+    if (!fullName && !username) {
+      return res.status(400).json({ error: "Fullname or username should be provided" });
+    }
+
+    const updateFields = {};
+    let errorMessage = null;
+
+    if (fullName) {
+      const isExistingFullName = await User.findOne({
+        fullName,
+        _id: { $ne: loggedInUserId }
+      });
+      if (isExistingFullName) {
+        errorMessage = "Full Name already exists in this app";
+      } else {
+        updateFields.fullName = fullName;
       }
-    });
-    if (isExistingFullName) {
-      return res.status(400).json({ error: "Full Name already exist in this app" });
-    };
+    }
 
-    const updatedFullName = await User.findByIdAndUpdate(
-      loggedInUserId,
-      { fullName },
-      { new: true }
-    );
-    res.status(200).json({ updatedFullName });
-    
-  } catch (error) {
-    console.log("Error in updateFullName controller", error.message);
-    res.status(500).json({ error: "Something went wrong" });
-  }
-}
-
-export const updateUserName = async (req, res) => {
-  try {
-    const loggedInUserId = req.user._id;
-    const { username } = req.body;
-
-    const isExistingUsername = await User.findOne({
-      username,
-      _id: {
-        $ne: loggedInUserId
+    if (username && !errorMessage) {
+      const isExistingUsername = await User.findOne({
+        username,
+        _id: { $ne: loggedInUserId }
+      });
+      if (isExistingUsername) {
+        errorMessage = "Username already exists in this app";
+      } else {
+        updateFields.username = username;
       }
-    });
+    }
 
-    if (isExistingUsername) {
-      return res.status(400).json({ error: "Username already exist in this app" });
-    };
-    
-    const updatedUsername = await User.findByIdAndUpdate(
+    if (errorMessage) {
+      return res.status(400).json({ error: errorMessage });
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
       loggedInUserId,
-      { username },
+      updateFields,
       { new: true }
     );
 
-    res.status(200).json({ updatedUsername });
-
+    res.status(200).json({ updatedUser });
+    
   } catch (error) {
-    console.log("Error in updateUserName controller", error.message);
+    console.log("Error in updateUserProfile controller", error.message);
     res.status(500).json({ error: "Something went wrong" });
   }
 };

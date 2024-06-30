@@ -45,9 +45,15 @@ export const updateInfo = async (req, res) => {
       return res.status(400).json({ error: "Please select between 1 and 3 hobbies." });
     }
 
+
+    const data = {}
+    if (birthday !== undefined) { data.birthday = birthday };
+    if (hobbies !== undefined) { data.hobbies = hobbies };
+    if (motto !== undefined) { data.motto = motto };
+
     const updatedProfile = await ProfInfo.findByIdAndUpdate(
       loggedInId,
-      { birthday, hobbies, motto },
+      data,
       { new: true, runValidators: true }
     );
 
