@@ -4,6 +4,10 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 
 const ProfileHeading = () => {
   const { authUser } = useAuthContext();
+  if (!authUser) {
+    return (<span className="loading loading-spinner"></span>);
+  }
+
   return (
     <div className="py-3 border">
       <div className="flex justify-between items-center max-w-[95%] mx-auto">

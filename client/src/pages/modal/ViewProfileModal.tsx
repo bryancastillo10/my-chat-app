@@ -2,10 +2,12 @@ import Modal from "./Modal";
 import useViewProfileModal from "../../store/useViewProfileModal";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { ProfileInfo } from "../../components";
+import useUpdateNames from "../../hooks/useUpdateNames";
 
 const ViewProfileModal = () => {
   const { authUser } = useAuthContext();
   const { isOpen, onClose } = useViewProfileModal();
+  const { loading, updateNames } = useUpdateNames();
   if (authUser === null) return "No User";
 
 
@@ -21,11 +23,17 @@ const ViewProfileModal = () => {
       <div className="flex flex-col justify-between gap-1">
         <ProfileInfo
           label="Full Name"
+          loading={loading}
+          field="fullName"
           value={authUser.fullName}
+          updateAction={updateNames}
         />
         <ProfileInfo
           label="Username"
+          loading={loading}
+          field="username"
           value={authUser.username}
+          updateAction={updateNames}
         />
       </div>
     </div>
