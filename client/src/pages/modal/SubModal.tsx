@@ -3,13 +3,16 @@ import { Button } from "../../components";
 
 interface SubModalProps{
     isOpen: boolean;
+    content: string;
+    action?: () => void;
+    disabled?: boolean;
     onClose: () => void;
 }
 
 
-const SubModal = ({isOpen,onClose}:SubModalProps) => {
+const SubModal = ({isOpen,onClose,content,disabled,action}:SubModalProps) => {
     const [showModal, setShowModal] = useState<boolean>(false);
-    
+
     // Opening the modal
     useEffect(() => {
         setShowModal(isOpen);
@@ -17,11 +20,15 @@ const SubModal = ({isOpen,onClose}:SubModalProps) => {
     
     // Closing the modal
     const handleCloseModal = useCallback(() => {
+        if (disabled) {
+        return;
+        }
+      
         setShowModal(false);
         setTimeout(() => {
             onClose();
         }, 300);
-    }, [onClose]);
+    }, [onClose, disabled]);
 
     return (
 <div className="absolute z-50  w-full top-[200px]">
@@ -32,11 +39,15 @@ const SubModal = ({isOpen,onClose}:SubModalProps) => {
             : "translate-y-full opacity-0 pointer-events-none"
             }     
             `}>
-            <h1>Are you sure you want to delete your SpaceChat account</h1>
-            <div className="flex justify-center gap-2">
+            <div className="my-4 max-w-[90%] mx-auto">
+                    <p className="text-center text-white leading-sm">{content}</p>
+            </div>
+                <div className="flex justify-center gap-2">
                 <Button
                 type="button"
-                variant="accept"    
+                variant="accept"
+                disabled={disabled}
+                action={action}        
                 >
                 Yes
                 </Button>
