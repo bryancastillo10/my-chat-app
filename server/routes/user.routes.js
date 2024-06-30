@@ -3,8 +3,7 @@ import {
   getUsersForSidebar,
   profilePictureChoices,
   updateProfilePicture,
-  updateFullName,
-  updateUserName,
+
   deleteAccount,
   updateUserProfile
 } from "../controllers/user.controller.js";
