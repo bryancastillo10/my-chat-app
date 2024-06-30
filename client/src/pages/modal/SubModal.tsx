@@ -31,7 +31,7 @@ const SubModal = ({isOpen,onClose,content,disabled,action}:SubModalProps) => {
     }, [onClose, disabled]);
 
     return (
-<div className="absolute z-50  w-full top-[200px]">
+<div className="absolute z-10  w-full top-[200px]">
             <div className={`flex flex-col max-w-[50%] mx-auto glassmorphism min-h-[100px] p-4
             translate duration-500 rounded-xl ${
             showModal

@@ -40,7 +40,7 @@ const Avatar = ({ currentUser, profilePic }: AvatarProps) => {
         />
       </div>
       {openMenu && (
-        <div className="absolute z-50 glassmorphism shadow-md w-[240px] md:max-w-3/4  -right-[20px] top-11 text-sm">
+        <div className="absolute z-1 glassmorphism shadow-md w-[240px] md:max-w-3/4  -right-[20px] top-11 text-sm">
           <div className="flex flex-col cursor-pointer">
             <UserSettings
               onClick={profilePicModal.onOpen}
