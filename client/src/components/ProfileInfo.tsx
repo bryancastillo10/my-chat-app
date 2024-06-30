@@ -15,9 +15,11 @@ const ProfileInfo = ({label,value}:ProfileInfoProps) => {
         setOpenEdit(!openEdit);
     }, [openEdit]);
 
+
+
     const handleUpdate = useCallback((e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
+        // await useUpdateNames
     }, []);
 
     const handleInput = useCallback((e: ChangeEvent<HTMLInputElement>) => {

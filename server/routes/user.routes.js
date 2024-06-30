@@ -5,7 +5,8 @@ import {
   updateProfilePicture,
   updateFullName,
   updateUserName,
-  deleteAccount
+  deleteAccount,
+  updateUserProfile
 } from "../controllers/user.controller.js";
 import protectRoute from "../middleware/protectRoute.js";
 
@@ -13,9 +14,8 @@ const router = express.Router();
 
 router.get("/connections", protectRoute, getUsersForSidebar);
 router.post("/profile-pictures", protectRoute, profilePictureChoices);
-router.put("/update/profile/:id", protectRoute, updateProfilePicture);
-router.put("/update/fullname/:id", protectRoute, updateFullName);
-router.put("/update/username/:id", protectRoute, updateUserName); 
+router.put("/update/picture/:id", protectRoute, updateProfilePicture);
+router.put("/update/profile/:id", protectRoute, updateUserProfile);
 router.delete("/delete/account/:id", protectRoute, deleteAccount);
 
 export default router;
