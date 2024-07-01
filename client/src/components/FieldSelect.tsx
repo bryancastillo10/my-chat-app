@@ -1,41 +1,30 @@
-import  { useState } from 'react';
-import AsyncSelect, { AsyncProps } from "react-select/async";
+import React, { useState } from 'react';
+import AsyncSelect from "react-select/async";
 import { MultiValue, SingleValue } from "react-select";
+import fetchHobbyOptions, { HobbyOption } from '../utils/fetchHobbyOptions';
+import selectStyles from '../utils/selectStyles';
 
-
-interface HobbyOption {
-  label: string;
-  value: number;
-}
-
-const hobbyOptions: HobbyOption[] = [
-  { label: "dancing", value: 1 },
-  { label: "singing", value: 2 },
-  { label: "gardening", value: 3 }
-];
-
-const FieldSelect = () => {
+const FieldSelect: React.FC = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [hobby, setHobby] = useState<MultiValue<HobbyOption> | SingleValue<HobbyOption>>();
 
-    const loadOptions: AsyncProps<HobbyOption, boolean, never>['loadOptions'] = (inputValue, callback) => {
-        setTimeout(() => {
-            console.log("load Options", inputValue);
-            callback(hobbyOptions.filter(option => 
-              option.label.toLowerCase().includes(inputValue.toLowerCase())
-            ));
-        }, 2000);
-    };
+const loadOptions = async (inputValue: string) => {
+    const hobbyOptions = await fetchHobbyOptions();
+    return hobbyOptions.filter(option =>
+        option.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+};
 
     const handleOptions = (selections: MultiValue<HobbyOption> | SingleValue<HobbyOption>) => {
-        console.log("handleChange", selections);
         setHobby(selections);
-    };
+    }
 
     return (
         <div className="field-select">
-            <AsyncSelect
-                defaultOptions={hobbyOptions}
+            <AsyncSelect<HobbyOption, true, never>
+                styles={selectStyles}
+                cacheOptions
+                defaultOptions
                 loadOptions={loadOptions}
                 onChange={handleOptions}
                 isMulti
