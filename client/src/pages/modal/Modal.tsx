@@ -42,7 +42,7 @@ const Modal = ({
     setTimeout(() => {
       onClose();
     }, 300);
-  }, [onClose,disabled]);
+  }, [onClose, disabled]);
 
   return (
     <>
@@ -56,7 +56,7 @@ const Modal = ({
       >
         <div className="relative translate md:h-auto border-0 rounded-lg shadow-lg flex flex-col w-[80%] mx-auto modal-glassmorphism outline-none focus:outline-none">
           {/* Header */}
-          <div className="relative flex items-center p-6 justify-between rounded-t">
+          <div className="relative flex items-center p-4 justify-between rounded-t">
             <button
               onClick={handleCloseModal}
               className="p-1 border-0 hover:opacity-70 transition absolute right-9 hover:text-rose-500"
@@ -75,7 +75,12 @@ const Modal = ({
           {/* Button Sections */}
           <div className="flex flex-col gap-2 p-6">
             <div className="flex flex-row justify-center items-center gap-4 w-full">
-              <Button disabled={disabled} type="button" variant="accept" action={action}>
+              <Button
+                disabled={disabled}
+                type="button"
+                variant="accept"
+                action={action}
+              >
                 {actionLabel}
               </Button>
               {secondaryAction && secondaryActionLabel && (
