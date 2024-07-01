@@ -22,6 +22,21 @@ export const addInfo = async (req, res) => {
   }
 };
 
+export const getHobbyOptions = async (req, res) => {
+const hobbyOptions = [
+  { label: "Reading", value: "reading" },
+  { label: "Traveling", value: "traveling" },
+  { label: "Cooking", value: "cooking" },
+  { label: "Gardening", value: "gardening" },
+  { label: "Painting", value: "painting" },
+  { label: "Writing", value: "writing" },
+  { label: "Sports", value: "sports" },
+  { label: "Photography", value: "photography" },
+];
+
+      res.status(201).json(hobbyOptions)
+};
+
 export const getInfo = async (req, res) => {
   try {
     const loggedInId = req.params.id;
