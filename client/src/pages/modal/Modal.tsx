@@ -71,7 +71,7 @@ const Modal = ({
             </div>
           </div>
           {/* Body  */}
-          <div className="relative p-6 flex-auto text-white">{body}</div>
+          <div className="relative p-4 flex-auto text-white">{body}</div>
           {/* Button Sections */}
           <div className="flex flex-col gap-2 p-6">
             <div className="flex flex-row justify-center items-center gap-4 w-full">
