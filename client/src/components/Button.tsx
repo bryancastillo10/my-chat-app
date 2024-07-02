@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import { ReactNode, FormEvent } from "react";
 
 interface ButtonProps {
   type: "submit" | "button" | "reset";
   variant?: string;
-  action?: () => void;
+  action?: (e: FormEvent<HTMLFormElement>) => void | Promise<void>;
   disabled?: boolean;
   children: ReactNode;
 }
@@ -16,9 +16,9 @@ const Button = ({ type, variant, action, children, disabled }: ButtonProps) => {
       case "cancel":
         return "px-4 py-2 rounded-2xl bg-rose-500 hover:bg-rose-700";
       case "update":
-        return "p-2 rounded-full bg-emerald-400 text-sm hover:bg-emerald-700"
+        return "p-2 rounded-full bg-emerald-400 text-sm hover:bg-emerald-700";
       case "cancel-edit":
-        return "p-2 rounded-full bg-rose-500 text-sm hover:bg-rose-700"
+        return "p-2 rounded-full bg-rose-500 text-sm hover:bg-rose-700";
       default:
         return "bg-sky-500";
     }
@@ -28,7 +28,7 @@ const Button = ({ type, variant, action, children, disabled }: ButtonProps) => {
       type={type}
       disabled={disabled}
       className={` text-white ${getClassName(variant)}`}
-      onClick={action}
+      onClick={action as any}
     >
       {children}
     </button>

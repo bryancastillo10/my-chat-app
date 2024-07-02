@@ -7,8 +7,8 @@ export interface profileInfoData {
 }
 
 type ViewProfileStore = {
-  profileInfo: profileInfoData[];
-  setProfileInfo: (profileInfo: profileInfoData[]) => void;
+  profileInfo: profileInfoData;
+  setProfileInfo: (profileInfo: profileInfoData) => void;
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
@@ -16,7 +16,7 @@ type ViewProfileStore = {
 
 const useViewProfileModal = create<ViewProfileStore>()((set) => ({
   // state for additional profile info
-  profileInfo: [],
+  profileInfo: { birthday: "", hobbies: [], motto: "" },
   setProfileInfo: (profileInfo) => set({ profileInfo }),
   // state for opening and closing the modal
   isOpen: false,

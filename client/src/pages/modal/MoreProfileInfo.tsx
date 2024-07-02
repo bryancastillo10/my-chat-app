@@ -1,9 +1,10 @@
 // import { useState } from "react";
 import { ProfileInfo } from "../../components";
-import  MoreProfileInfoForm  from "./MoreProfileInfoForm";
+import MoreProfileInfoForm from "./MoreProfileInfoForm";
+import useViewProfileModal from "../../store/useViewProfileModal";
 
 const MoreProfileInfo = () => {
-  // const [showProfile, setShowProfile] = useState<boolean>(false);
+  const { profileInfo } = useViewProfileModal();
   const withProfileInfo = false;
 
   return (
@@ -11,28 +12,28 @@ const MoreProfileInfo = () => {
       {withProfileInfo ? (
         <div className="relative grid grid-cols-1 place-items-center">
           <div className="flex">
-          <ProfileInfo
-            label="Birthday"
-            field="birthday"
-            value="Birthday"
-            updateAction={() => {}}
-          />
-          <ProfileInfo
-            label="Motto"
-            field="motto"
-            value="Motto"
-            updateAction={() => {}}
-          />
+            <ProfileInfo
+              label="Birthday"
+              field="birthday"
+              value={profileInfo.birthday}
+              updateAction={() => {}}
+            />
+            <ProfileInfo
+              label="Motto"
+              field="motto"
+              value={profileInfo.motto}
+              updateAction={() => {}}
+            />
           </div>
           <ProfileInfo
             label="Hobbies"
             field="hobbies"
-            value="Hobbies"
+            value={profileInfo.hobbies.join(", ")}
             updateAction={() => {}}
           />
         </div>
       ) : (
-       <MoreProfileInfoForm/>
+        <MoreProfileInfoForm />
       )}
     </div>
   );
