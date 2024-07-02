@@ -44,7 +44,7 @@ const ProfileInfo = ({
     <div className="flex ">
       <div className="relative flex items-end gap-2 min-w-fit p-2">
         <div className="flex flex-col gap-0">
-          <label className="text-sm">{label}</label>
+          <label className="text-sm text-amber-500">{label}</label>
           <p className="font-bold">{value}</p>
         </div>
         <span

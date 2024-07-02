@@ -26,7 +26,7 @@ const FieldSelect = () => {
   return (
     <div className="field-select">
       <AsyncSelect<HobbyOption, true, never>
-        placeholder="Select a hobby"
+        placeholder="Select at least 3 Hobbies"
         styles={selectStyles}
         cacheOptions
         defaultOptions
