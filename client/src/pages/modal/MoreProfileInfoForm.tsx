@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useCallback } from "react";
 import { Button, FieldInput, FieldSelect } from "../../components";
-import useAddProfileInfo from "../../hooks/useAddProfileInfo";
+import useAddProfileInfo from "../../hooks/user/useAddProfileInfo";
 import useViewProfileModal from "../../store/useViewProfileModal";
 
 interface MoreProfileInfoProps {
@@ -15,7 +15,7 @@ const MoreProfileInfoForm = ({ verifySuccess }: MoreProfileInfoProps) => {
     (e: ChangeEvent<HTMLInputElement>) => {
       setProfileInfo({ ...profileInfo, [e.target.id]: e.target.value });
     },
-    [profileInfo]
+    [profileInfo, setProfileInfo]
   );
 
   const handleSubmit = useCallback(
@@ -26,7 +26,7 @@ const MoreProfileInfoForm = ({ verifySuccess }: MoreProfileInfoProps) => {
         verifySuccess();
       }
     },
-    [addProfileInfo]
+    [addProfileInfo, verifySuccess]
   );
   return (
     <div className="absolute z-10 border-none bg-slate-500/40 rounded-xl p-4">

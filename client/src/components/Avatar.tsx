@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import UserSettings from "./UserSettings";
 import { UserRoundCheck, Image, LogOut } from "lucide-react";
-import useLogout from "../hooks/useLogout";
+import useLogout from "../hooks/auth/useLogout";
 import useProfilePicModal from "../store/useProfilePicModal";
 import useViewProfileModal from "../store/useViewProfileModal";
 

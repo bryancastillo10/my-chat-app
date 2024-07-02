@@ -27,8 +27,8 @@ const Button = ({ type, variant, action, children, disabled }: ButtonProps) => {
     <button
       type={type}
       disabled={disabled}
-      className={` text-white ${getClassName(variant)}`}
-      onClick={action as any}
+      className={` text-white ${getClassName(variant)}`} 
+      onClick={action as never}
     >
       {children}
     </button>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { useAuthContext } from "./useAuthContext";
+import { useAuthContext } from "../auth/useAuthContext";
 
 const useProfilePicChoices = () => {
   const [loading, setLoading] = useState<boolean>(false);

@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { FieldInput } from "../../components";
-import useLogin from "../../hooks/useLogin";
+import useLogin from "../../hooks/auth/useLogin";
 const LoginForm = () => {
     const { loading, logIn } = useLogin();
   const [loginData, setLoginData] = useState({

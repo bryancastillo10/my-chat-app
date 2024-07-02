@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { ContextProviderProps, SocketContextType } from "./type";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthContext } from "../hooks/auth/useAuthContext";
 import { io, Socket } from "socket.io-client";
 
 

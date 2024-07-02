@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
+import { useAuthContext } from "../auth/useAuthContext";
 import toast from "react-hot-toast";
-import useProfilePicModal from "../store/useProfilePicModal";
+import useProfilePicModal from "../../store/useProfilePicModal";
 
 const useUpdateProfilePic = () => {
   const [isUpdating, setIsUpdating] = useState<boolean>(false);

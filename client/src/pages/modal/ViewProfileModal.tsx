@@ -1,8 +1,8 @@
 import Modal from "./Modal";
 import useViewProfileModal from "../../store/useViewProfileModal";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { useAuthContext } from "../../hooks/auth/useAuthContext";
 import { ProfileInfo } from "../../components";
-import useUpdateNames from "../../hooks/useUpdateNames";
+import useUpdateNames from "../../hooks/user/useUpdateNames";
 import MoreProfileInfo from "./MoreProfileInfo";
 import useSubModal from "../../store/useSubModal";
 

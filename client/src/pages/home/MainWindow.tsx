@@ -2,7 +2,7 @@ import Messages from "../../components/Messages";
 import { Rocket } from "lucide-react";
 import useConversation from "../../store/useConversation";
 import { useEffect } from "react";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { useAuthContext } from "../../hooks/auth/useAuthContext";
 import { InputMessage } from "../../components";
 
 const MainWindow = () => {
