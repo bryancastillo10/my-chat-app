@@ -23,6 +23,7 @@ const useAddProfileInfo = () => {
 
       if (!res.ok) {
         toast.error("Failed to add your profile info");
+        return;
       }
       const data = await res.json();
       setProfileInfo(data);
