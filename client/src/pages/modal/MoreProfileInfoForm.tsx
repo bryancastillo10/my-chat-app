@@ -3,7 +3,11 @@ import { Button, FieldInput, FieldSelect } from "../../components";
 import useAddProfileInfo from "../../hooks/useAddProfileInfo";
 import useViewProfileModal from "../../store/useViewProfileModal";
 
-const MoreProfileInfoForm = () => {
+interface MoreProfileInfoProps {
+  verifySuccess: () => void;
+}
+
+const MoreProfileInfoForm = ({ verifySuccess }: MoreProfileInfoProps) => {
   const { profileInfo, setProfileInfo } = useViewProfileModal();
   const { loading, addProfileInfo } = useAddProfileInfo();
 
@@ -17,9 +21,12 @@ const MoreProfileInfoForm = () => {
   const handleSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      await addProfileInfo();
+      const isSubmitted = await addProfileInfo();
+      if (isSubmitted) {
+        verifySuccess();
+      }
     },
-    [profileInfo]
+    [addProfileInfo]
   );
   return (
     <div className="absolute z-10 border-none bg-slate-500/40 rounded-xl p-4">
