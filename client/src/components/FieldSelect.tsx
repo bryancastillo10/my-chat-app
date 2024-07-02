@@ -1,16 +1,11 @@
-import { useState } from "react";
 import AsyncSelect from "react-select/async";
 import { MultiValue, SingleValue } from "react-select";
 import fetchHobbyOptions, { HobbyOption } from "../utils/fetchHobbyOptions";
+import useViewProfileModal from "../store/useViewProfileModal";
 import selectStyles from "../utils/selectStyles";
 
 const FieldSelect = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [hobby, setHobby] = useState<
-    MultiValue<HobbyOption> | SingleValue<HobbyOption>
-  >();
-
-  console.log(hobby);
+  const { profileInfo, setProfileInfo } = useViewProfileModal();
 
   const loadOptions = async (inputValue: string) => {
     const hobbyOptions = await fetchHobbyOptions();
@@ -22,12 +17,16 @@ const FieldSelect = () => {
   const handleOptions = (
     selections: MultiValue<HobbyOption> | SingleValue<HobbyOption>
   ) => {
-    setHobby(selections);
+    if (Array.isArray(selections)) {
+      const newHobbies = selections.map((select) => select.value);
+      setProfileInfo({ ...profileInfo, hobbies: newHobbies });
+    }
   };
 
   return (
     <div className="field-select">
       <AsyncSelect<HobbyOption, true, never>
+        placeholder="Select a hobby"
         styles={selectStyles}
         cacheOptions
         defaultOptions

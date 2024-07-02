@@ -21,7 +21,6 @@ const MoreProfileInfoForm = () => {
     },
     [profileInfo]
   );
-  console.log(profileInfo);
   return (
     <div className="absolute z-10 border-none bg-slate-500/40 rounded-xl p-4">
       <h1>Share more information about you</h1>
