@@ -1,10 +1,15 @@
+import { useCallback, useState } from "react";
 import { ProfileInfo } from "../../components";
 import MoreProfileInfoForm from "./MoreProfileInfoForm";
 import useViewProfileModal from "../../store/useViewProfileModal";
 
 const MoreProfileInfo = () => {
+  const [withProfileInfo, setWithProfileInfo] = useState<boolean>(false);
   const { profileInfo } = useViewProfileModal();
-  const withProfileInfo = true;
+
+  const verifyProfileInfo = useCallback(() => {
+    setWithProfileInfo(!withProfileInfo);
+  }, [withProfileInfo]);
 
   return (
     <div className="block max-w-[90%] h-[200px] mx-auto">
@@ -32,7 +37,7 @@ const MoreProfileInfo = () => {
           </div>
         </div>
       ) : (
-        <MoreProfileInfoForm />
+        <MoreProfileInfoForm verifySuccess={verifyProfileInfo} />
       )}
     </div>
   );

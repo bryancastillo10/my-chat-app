@@ -11,7 +11,7 @@ const useAddProfileInfo = () => {
     motto: profileInfo.motto,
     hobbies: Array.isArray(profileInfo.hobbies) ? profileInfo.hobbies : [],
   };
-
+  // Boolean is returned for the parent UI component conditional rendering
   const addProfileInfo = async () => {
     try {
       setLoading(true);
@@ -23,18 +23,19 @@ const useAddProfileInfo = () => {
 
       if (!res.ok) {
         toast.error("Failed to add your profile info");
-        return;
+        return false;
       }
       const data = await res.json();
       setProfileInfo(data);
-
       toast.success("Profile Information added Successfully");
+      return true;
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
       } else {
         throw new Error("An unknown error occured");
       }
+      return false;
     } finally {
       setLoading(false);
     }
