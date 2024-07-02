@@ -6,22 +6,28 @@ const useAddProfileInfo = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { profileInfo, setProfileInfo } = useViewProfileModal();
 
+  const addedProfileInfo = {
+    birthday: profileInfo.birthday,
+    motto: profileInfo.motto,
+    hobbies: Array.isArray(profileInfo.hobbies) ? profileInfo.hobbies : [],
+  };
+
   const addProfileInfo = async () => {
     try {
       setLoading(true);
       const res = await fetch(`/api/profileinfo/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ profileInfo }),
+        body: JSON.stringify(addedProfileInfo),
       });
 
       if (!res.ok) {
         toast.error("Failed to add your profile info");
       }
       const data = await res.json();
-      console.log(data);
-
       setProfileInfo(data);
+
+      toast.success("Profile Information added Successfully");
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
