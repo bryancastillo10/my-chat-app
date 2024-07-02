@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useViewProfileModal from "../store/useViewProfileModal";
+import useViewProfileModal from "../../store/useViewProfileModal";
 import toast from "react-hot-toast";
 
 const useAddProfileInfo = () => {

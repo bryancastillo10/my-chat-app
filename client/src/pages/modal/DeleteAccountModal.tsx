@@ -1,6 +1,6 @@
 import SubModal from "./SubModal";
 import useSubModal from "../../store/useSubModal";
-import useDeleteAccount from "../../hooks/useDeleteAccount";
+import useDeleteAccount from "../../hooks/user/useDeleteAccount";
 
 const DeleteAccountModal = () => {
     const { isOpen, onClose } = useSubModal();

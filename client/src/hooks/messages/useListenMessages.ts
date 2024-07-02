@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useSocketContext } from "./useSocketContext";
-import useConversation from "../store/useConversation";
-import { messageData } from "../store/useConversation";
+import useConversation from "../../store/useConversation";
+import { messageData } from "../../store/useConversation";
 
 const useListenMessages = () => {
     const { socket } = useSocketContext();

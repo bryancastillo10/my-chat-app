@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { Send } from "lucide-react";
-import useSendMessage from "../hooks/useSendMessage";
+import useSendMessage from "../hooks/messages/useSendMessage";
 
 interface InputMessageProps {
   type: string;

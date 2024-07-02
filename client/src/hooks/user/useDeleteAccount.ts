@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { useAuthContext } from "./useAuthContext";
-import useSubModal from "../store/useSubModal";
-import useLogout from "./useLogout";
+import { useAuthContext } from "../auth/useAuthContext";
+import useSubModal from "../../store/useSubModal";
+import useLogout from "../auth/useLogout";
 import toast from "react-hot-toast";
 
 const useDeleteAccount = () => {

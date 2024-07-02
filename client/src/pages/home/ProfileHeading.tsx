@@ -1,6 +1,6 @@
 import { Avatar } from "../../components";
 import { Sparkles } from "lucide-react";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { useAuthContext } from "../../hooks/auth/useAuthContext";
 
 const ProfileHeading = () => {
   const { authUser } = useAuthContext();

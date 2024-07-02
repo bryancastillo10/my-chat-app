@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { userData } from "../store/useConversation";
+import { userData } from "../../store/useConversation";
 
 const useGetConversations = () => {
   const [loading, setLoading] = useState<boolean>(false);

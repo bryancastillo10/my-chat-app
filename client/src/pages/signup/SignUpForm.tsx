@@ -2,7 +2,7 @@ import { useState, useCallback, ChangeEvent, FormEvent } from "react";
 import { FieldInput } from "../../components";
 import GenderCheckbox from "./GenderCheckbox";
 import { Link } from "react-router-dom";
-import useSignUp from "../../hooks/useSignUp";
+import useSignUp from "../../hooks/auth/useSignUp";
 
 
 const SignUpForm = () => {

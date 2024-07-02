@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
+import { useAuthContext } from "../auth/useAuthContext";
 import toast from "react-hot-toast";
 
 export interface UpdateNameParams{

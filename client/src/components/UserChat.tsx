@@ -1,4 +1,4 @@
-import { useSocketContext } from "../hooks/useSocketContext";
+import { useSocketContext } from "../hooks/messages/useSocketContext";
 import useConversation from "../store/useConversation";
 import { userData } from "../store/useConversation";
 

@@ -1,6 +1,6 @@
 import { useState, useCallback, ChangeEvent, FormEvent } from "react";
 import useConversation from "../store/useConversation";
-import useGetConversations from "../hooks/useGetConversations";
+import useGetConversations from "../hooks/messages/useGetConversations";
 import { Search } from "lucide-react";
 import toast from "react-hot-toast";
 

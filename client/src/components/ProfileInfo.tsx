@@ -2,7 +2,7 @@ import { useState, useCallback, ChangeEvent, FormEvent } from "react";
 import { Edit3, Check, X } from "lucide-react";
 import Button from "./Button";
 import FieldInput from "./FieldInput";
-import { UpdateNameParams } from "../hooks/useUpdateNames";
+import { UpdateNameParams } from "../hooks/user/useUpdateNames";
 
 interface ProfileInfoProps {
   label: string;
