@@ -5,7 +5,7 @@ const profInfoSchema = new mongoose.Schema(
     birthday: {
       type: Date,
       default: "",
-      unique:true,
+      unique: false,
     },
     hobbies: {
       type: [String],

@@ -1,4 +1,5 @@
 import useUpdateProfileModal from "../../store/useUpdateProfileModal";
+
 import { Edit3 } from "lucide-react";
 
 interface MoreProfileInfoProps {
@@ -28,7 +29,7 @@ const MoreProfileInfo = ({ onClose }: MoreProfileInfoProps) => {
         <article className="flex justify-center">
           <div className="">
             <h1 className="font-bold text-amber-500">Birthday</h1>
-            <p>1996-10-10</p>
+            <p> "No Birthday Added"</p>
           </div>
           <div className=" text-center">
             <h1 className="font-bold text-amber-500">Motto</h1>

@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import User from "../models/user.model.js";
+import ProfInfo from "../models/profileinfo.model.js";
 import generateTokenandSetCookie from "../utils/generateToken.js";
 
 export const signUpUser = async (req, res) => {
@@ -29,8 +30,16 @@ export const signUpUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, cryptSalt);
 
     // To obtain an avatar prof pic
-    const boyProfilePic ="https://avatar.iran.liara.run/public/job/operator/male";
-    const girlProfilePic ="https://avatar.iran.liara.run/public/job/operator/female";
+    const boyProfilePic =
+      "https://avatar.iran.liara.run/public/job/operator/male";
+    const girlProfilePic =
+      "https://avatar.iran.liara.run/public/job/operator/female";
+
+    // Add New Profile Info Model (Birthday, Hobbies, Motto)
+    const newProfInfo = new ProfInfo({
+      birthday: new Date(),
+    });
+    await newProfInfo.save();
 
     // To create a new data and save to the database
     const newUser = new User({
@@ -39,12 +48,14 @@ export const signUpUser = async (req, res) => {
       password: hashedPassword,
       gender,
       profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
+      profileInfo: newProfInfo._id,
     });
+
+    await newUser.save();
 
     if (newUser) {
       // Utility function to generate jwt token
       generateTokenandSetCookie(newUser._id, res);
-      await newUser.save();
 
       // HTTP Success Response
       res.status(201).json({
@@ -52,6 +63,7 @@ export const signUpUser = async (req, res) => {
         fullName: newUser.fullName,
         username: newUser.username,
         profilePic: newUser.profilePic,
+        profileInfo: newProfInfo._id,
       });
     } else {
       res.status(400).json({ error: "Invalid user data" });
