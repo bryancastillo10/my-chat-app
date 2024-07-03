@@ -1,6 +1,8 @@
 import useGetProfileInfo from "../../hooks/user/useGetProfileInfo";
 import useUpdateProfileModal from "../../store/useUpdateProfileModal";
+import formatDate from "../../utils/formatDate";
 import { Edit3 } from "lucide-react";
+import { getRandomColor } from "../../utils/badgeColor";
 
 interface MoreProfileInfoProps {
   onClose: () => void;
@@ -13,7 +15,8 @@ const MoreProfileInfo = ({ onClose }: MoreProfileInfoProps) => {
     onClose();
     updateProfileModalOpen();
   };
-  console.log(profileInfo);
+
+  const headerStyle = "font-bold text-amber-500";
   return (
     <div className="block max-w-[80%] h-[200px] mx-auto pt-2">
       <div className="relative grid grid-cols-1 space-y-4 place-items-center">
@@ -26,32 +29,25 @@ const MoreProfileInfo = ({ onClose }: MoreProfileInfoProps) => {
           <Edit3 size="14" />
         </div>
 
-        {/* Display Profile Info */}
-        <article className="flex justify-center">
-          <div className="">
-            <h1 className="font-bold text-amber-500">Birthday</h1>
-            <p>{profileInfo.birthday || "No birthday added"}</p>
+          {/* Display Profile Info */}
+          <article className="flex justify-center gap-4">
+          <div>
+            <h1 className={headerStyle}>Birthday</h1>
+            <p>{formatDate(profileInfo.birthday) || "No birthday added"}</p>
           </div>
-          <div className=" text-center">
-            <h1 className="font-bold text-amber-500">Motto</h1>
-            <p className="text-sm italic">{profileInfo.motto}</p>
+          <div className="text-center">
+            <h1 className={headerStyle}>Motto</h1>
+            <p className="text-sm italic">{profileInfo.motto || "No motto added"}</p>
           </div>
         </article>
         <div className="pt-4 text-center">
-          <h1 className="font-bold text-amber-500 mb-2">Hobbies</h1>
-          <ul className="flex items-center gap-2">
-            <li className="text-sm bg-amber-500 py-0.5 px-2 rounded-2xl">
-              Coding
-            </li>
-            <li className="text-sm bg-sky-500 py-0.5 px-2 rounded-2xl">
-              Traveling
-            </li>
-            <li className="text-sm bg-emerald-700 py-0.5 px-2 rounded-2xl">
-              Photography
-            </li>
-            <li className="text-sm bg-indigo-600 py-0.5 px-2 rounded-2xl">
-              Sports
-            </li>
+          <h1 className={`${headerStyle} mb-2`}>Hobbies</h1>
+          <ul className="flex flex-wrap justify-center gap-2">
+            {profileInfo.hobbies.map((hobby, index) => (
+              <li key={index} className={`text-sm py-0.5 px-2 rounded-2xl ${getRandomColor()}`}>
+                {hobby}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
