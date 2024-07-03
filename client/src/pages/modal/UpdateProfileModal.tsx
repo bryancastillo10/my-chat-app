@@ -1,14 +1,12 @@
 import { ChangeEvent, FormEvent, useCallback } from "react";
-import { Button, FieldInput, FieldSelect } from "../../components";
+import Modal from "./Modal";
+import { FieldInput, FieldSelect, Button } from "../../components";
 import useAddProfileInfo from "../../hooks/user/useAddProfileInfo";
-import useViewProfileModal from "../../store/useViewProfileModal";
+import useUpdateProfileModal from "../../store/useUpdateProfileModal";
 
-interface MoreProfileInfoProps {
-  verifySuccess: () => void;
-}
-
-const MoreProfileInfoForm = ({ verifySuccess }: MoreProfileInfoProps) => {
-  const { profileInfo, setProfileInfo } = useViewProfileModal();
+const UpdateProfileInfoForm = () => {
+  const { profileInfo, setProfileInfo, isOpen, onClose } =
+    useUpdateProfileModal();
   const { loading, addProfileInfo } = useAddProfileInfo();
 
   const onChangeInput = useCallback(
@@ -21,15 +19,14 @@ const MoreProfileInfoForm = ({ verifySuccess }: MoreProfileInfoProps) => {
   const handleSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const isSubmitted = await addProfileInfo();
-      if (isSubmitted) {
-        verifySuccess();
-      }
+      await addProfileInfo();
+      onClose();
     },
-    [addProfileInfo, verifySuccess]
+    [addProfileInfo]
   );
-  return (
-    <div className="absolute z-10 border-none bg-slate-500/40 rounded-xl p-4">
+
+  const body = (
+    <div className="max-w-[80%] mx-auto ">
       <h1>Share more information about you</h1>
       <form className="flex flex-col gap-2">
         <div className="flex gap-4">
@@ -60,6 +57,21 @@ const MoreProfileInfoForm = ({ verifySuccess }: MoreProfileInfoProps) => {
       </form>
     </div>
   );
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      disabled={loading}
+      title="Update Profile Information"
+      subtitle="Share information about you"
+      body={body}
+      actionLabel="Update Profile"
+      action={() => {}}
+      secondaryAction={onClose}
+      secondaryActionLabel="Cancel"
+    />
+  );
 };
 
-export default MoreProfileInfoForm;
+export default UpdateProfileInfoForm;

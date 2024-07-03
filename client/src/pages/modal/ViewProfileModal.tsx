@@ -45,7 +45,7 @@ const ViewProfileModal = () => {
           />
         </div>
       </div>
-      <MoreProfileInfo />
+      <MoreProfileInfo onClose={onClose} />
     </div>
   );
   return (
