@@ -4,7 +4,7 @@ import Button from "./Button";
 import FieldInput from "./FieldInput";
 import { UpdateNameParams } from "../hooks/user/useUpdateNames";
 
-interface ProfileInfoProps {
+interface ProfileNameProps {
   label: string;
   value: string;
   loading?: boolean;
@@ -18,7 +18,7 @@ const ProfileInfo = ({
   loading,
   updateAction,
   field,
-}: ProfileInfoProps) => {
+}: ProfileNameProps) => {
   const [openEdit, setOpenEdit] = useState<boolean>(false);
   const [newValue, setNewValue] = useState<string>(value);
 
