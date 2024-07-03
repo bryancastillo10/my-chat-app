@@ -10,7 +10,7 @@ export const AuthContextProvider = ({ children }: ContextProviderProps) => {
   });
 
   const updateAuthUser = useCallback((updates: Partial<AuthUser>) => {
-      setAuthUser((prevUser) => {
+    setAuthUser((prevUser) => {
       if (!prevUser) return null;
 
       const updatedUser: AuthUser = {
@@ -18,6 +18,7 @@ export const AuthContextProvider = ({ children }: ContextProviderProps) => {
         fullName: updates.fullName ?? prevUser.fullName,
         profilePic: updates.profilePic ?? prevUser.profilePic,
         username: updates.username ?? prevUser.username,
+        profileInfo: updates.profileInfo ?? prevUser.profileInfo,
       };
 
       localStorage.setItem("app-user", JSON.stringify(updatedUser));

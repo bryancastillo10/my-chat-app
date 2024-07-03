@@ -1,5 +1,5 @@
+import useGetProfileInfo from "../../hooks/user/useGetProfileInfo";
 import useUpdateProfileModal from "../../store/useUpdateProfileModal";
-
 import { Edit3 } from "lucide-react";
 
 interface MoreProfileInfoProps {
@@ -8,11 +8,12 @@ interface MoreProfileInfoProps {
 
 const MoreProfileInfo = ({ onClose }: MoreProfileInfoProps) => {
   const { onOpen: updateProfileModalOpen } = useUpdateProfileModal();
+  const { profileInfo } = useGetProfileInfo();
   const updateProfileClicked = () => {
     onClose();
     updateProfileModalOpen();
   };
-
+  console.log(profileInfo);
   return (
     <div className="block max-w-[80%] h-[200px] mx-auto pt-2">
       <div className="relative grid grid-cols-1 space-y-4 place-items-center">
@@ -29,14 +30,11 @@ const MoreProfileInfo = ({ onClose }: MoreProfileInfoProps) => {
         <article className="flex justify-center">
           <div className="">
             <h1 className="font-bold text-amber-500">Birthday</h1>
-            <p> "No Birthday Added"</p>
+            <p>{profileInfo.birthday || "No birthday added"}</p>
           </div>
           <div className=" text-center">
             <h1 className="font-bold text-amber-500">Motto</h1>
-            <p className="text-sm italic">
-              Don't wait for a perfect moment take the moment and make it
-              perfect
-            </p>
+            <p className="text-sm italic">{profileInfo.motto}</p>
           </div>
         </article>
         <div className="pt-4 text-center">

@@ -1,13 +1,13 @@
 import { ChangeEvent, FormEvent, useCallback } from "react";
 import Modal from "./Modal";
 import { FieldInput, FieldSelect, Button } from "../../components";
-import useAddProfileInfo from "../../hooks/user/useAddProfileInfo";
+import useUpdateProfileInfo from "../../hooks/user/useUpdateProfileInfo";
 import useUpdateProfileModal from "../../store/useUpdateProfileModal";
 
 const UpdateProfileInfoForm = () => {
   const { profileInfo, setProfileInfo, isOpen, onClose } =
     useUpdateProfileModal();
-  const { loading, addProfileInfo } = useAddProfileInfo();
+  const { loading, updateProfileInfo } = useUpdateProfileInfo();
 
   const onChangeInput = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -19,10 +19,10 @@ const UpdateProfileInfoForm = () => {
   const handleSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      await addProfileInfo();
+      await updateProfileInfo();
       onClose();
     },
-    [addProfileInfo]
+    [updateProfileInfo]
   );
 
   const body = (
