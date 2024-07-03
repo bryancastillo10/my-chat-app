@@ -25,6 +25,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    profileInfo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "ProfInfo",
+      required: false,
+    },
   },
   { timestamps: true }
 );
