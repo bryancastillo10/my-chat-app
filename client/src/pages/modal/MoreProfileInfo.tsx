@@ -1,44 +1,47 @@
-import { useCallback, useState } from "react";
-import { ProfileInfo } from "../../components";
-import MoreProfileInfoForm from "./MoreProfileInfoForm";
-import useViewProfileModal from "../../store/useViewProfileModal";
+import { Edit3 } from "lucide-react";
 
 const MoreProfileInfo = () => {
-  const [withProfileInfo, setWithProfileInfo] = useState<boolean>(false);
-  const { profileInfo } = useViewProfileModal();
-
-  const verifyProfileInfo = useCallback(() => {
-    setWithProfileInfo(!withProfileInfo);
-  }, [withProfileInfo]);
-
   return (
-    <div className="block max-w-[90%] h-[200px] mx-auto">
-      {withProfileInfo ? (
-        <div className="relative grid grid-cols-1 place-items-center">
-          <div className="flex flex-col gap-2">
-            <ProfileInfo
-              label="Birthday"
-              field="birthday"
-              value={profileInfo.birthday}
-              updateAction={() => {}}
-            />
-            <ProfileInfo
-              label="Motto"
-              field="motto"
-              value={profileInfo.motto}
-              updateAction={() => {}}
-            />
-            <ProfileInfo
-              label="Hobbies"
-              field="hobbies"
-              value={profileInfo.hobbies.join(", ")}
-              updateAction={() => {}}
-            />
-          </div>
+    <div className="block max-w-[80%] h-[200px] mx-auto pt-2">
+      <div className="relative grid grid-cols-1 space-y-4 place-items-center">
+        {/* Edit Profile Info */}
+        <div
+          onClick={() => {}}
+          className="absolute top-10 right-2 cursor-pointer p-1 hover:bg-amber-500 rounded-md duration-500 ease-out
+          grid grid-cols-1 place-items-center"
+        >
+          <Edit3 size="14" />
         </div>
-      ) : (
-        <MoreProfileInfoForm verifySuccess={verifyProfileInfo} />
-      )}
+
+        {/* Display Profile Info */}
+        <div className="">
+          <h1 className="font-bold text-amber-500">Birthday</h1>
+          <p>1996-10-10</p>
+        </div>
+        <div className=" text-center">
+          <h1 className="font-bold text-amber-500">Motto</h1>
+          <p className="text-sm italic">
+            Don't wait for a perfect moment take the moment and make it perfect
+          </p>
+        </div>
+        <div className="text-center">
+          <h1 className="font-bold text-amber-500 mb-2">Hobbies</h1>
+          <ul className="flex items-center gap-2">
+            <li className="text-sm bg-amber-500 py-0.5 px-2 rounded-2xl">
+              Coding
+            </li>
+            <li className="text-sm bg-sky-500 py-0.5 px-2 rounded-2xl">
+              Traveling
+            </li>
+            <li className="text-sm bg-emerald-700 py-0.5 px-2 rounded-2xl">
+              Photography
+            </li>
+            <li className="text-sm bg-indigo-600 py-0.5 px-2 rounded-2xl">
+              Sports
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

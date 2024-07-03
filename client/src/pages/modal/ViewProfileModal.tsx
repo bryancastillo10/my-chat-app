@@ -1,7 +1,7 @@
 import Modal from "./Modal";
 import useViewProfileModal from "../../store/useViewProfileModal";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
-import { ProfileInfo } from "../../components";
+import { ProfileName } from "../../components";
 import useUpdateNames from "../../hooks/user/useUpdateNames";
 import MoreProfileInfo from "./MoreProfileInfo";
 import useSubModal from "../../store/useSubModal";
@@ -29,14 +29,14 @@ const ViewProfileModal = () => {
           />
         </div>
         <div className="flex flex-col gap-0.5">
-          <ProfileInfo
+          <ProfileName
             label="Full Name"
             loading={loading}
             field="fullName"
             value={authUser.fullName}
             updateAction={updateNames}
           />
-          <ProfileInfo
+          <ProfileName
             label="Username"
             loading={loading}
             field="username"
