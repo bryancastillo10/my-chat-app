@@ -1,11 +1,11 @@
 import AsyncSelect from "react-select/async";
 import { MultiValue, SingleValue } from "react-select";
 import fetchHobbyOptions, { HobbyOption } from "../utils/fetchHobbyOptions";
-import useViewProfileModal from "../store/useViewProfileModal";
+import useUpdateProfileModal from "../store/useUpdateProfileModal";
 import selectStyles from "../utils/selectStyles";
 
 const FieldSelect = () => {
-  const { profileInfo, setProfileInfo } = useViewProfileModal();
+  const { profileInfo, setProfileInfo } = useUpdateProfileModal();
 
   const loadOptions = async (inputValue: string) => {
     const hobbyOptions = await fetchHobbyOptions();

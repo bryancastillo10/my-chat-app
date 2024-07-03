@@ -1,10 +1,10 @@
 import { useState } from "react";
-import useViewProfileModal from "../../store/useViewProfileModal";
+import useUpdateProfileModal from "../../store/useUpdateProfileModal";
 import toast from "react-hot-toast";
 
 const useAddProfileInfo = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const { profileInfo, setProfileInfo } = useViewProfileModal();
+  const { profileInfo, setProfileInfo } = useUpdateProfileModal();
 
   const addedProfileInfo = {
     birthday: profileInfo.birthday,

@@ -4,6 +4,7 @@ import MainWindow from "./MainWindow";
 import UpdateProfilePicModal from "../modal/UpdateProfilePicModal";
 import ViewProfileModal from "../modal/ViewProfileModal";
 import DeleteAccountModal from "../modal/DeleteAccountModal";
+import UpdateProfileModal from "../modal/UpdateProfileModal";
 
 const Home = () => {
   return (
@@ -12,7 +13,8 @@ const Home = () => {
         <ProfileHeading />
         <UpdateProfilePicModal />
         <ViewProfileModal />
-        <DeleteAccountModal/>
+        <UpdateProfileModal />
+        <DeleteAccountModal />
       </div>
       <div className="flex overflow-y-auto">
         <Sidebar />
