@@ -97,6 +97,7 @@ export const loginUser = async (req, res) => {
       fullName: user.fullName,
       username: user.username,
       profilePic: user.profilePic,
+      profileInfo: user.profileInfo,
     });
   } catch (error) {
     // HTTP Internal Server Error Response

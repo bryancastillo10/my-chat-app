@@ -11,6 +11,7 @@ export type AuthUser = {
   fullName: string;
   profilePic: string;
   username: string;
+  profileInfo: string;
 };
 
 export interface AuthContextProps {
