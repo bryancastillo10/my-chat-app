@@ -141,7 +141,7 @@ export const deleteAccount = async (req, res) => {
     if (user.profileInfo) {
       await ProfInfo.findByIdAndDelete(user.profileInfo);
     }
-    await ProfInfo.findByIdAndDelete(userId);
+    await User.findByIdAndDelete(userId);
 
     res.status(200).json({ message: "Account has been deleted" });
   } catch (error) {
