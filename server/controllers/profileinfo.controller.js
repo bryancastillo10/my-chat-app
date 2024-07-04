@@ -1,5 +1,26 @@
 import ProfInfo from "../models/profileinfo.model.js";
 
+export const getAllUserProfileInfo = async (req, res) => {
+  try {
+    const loggedInUserId = req.user._id;
+
+    if (!loggedInUserId) {
+      return res.status(401).json("Unauthorized access");
+    }
+
+    const allProfileInfo = await ProfInfo.find({
+      _id: {
+        $ne: loggedInUserId,
+      },
+    });
+
+    res.status(200).json(allProfileInfo);
+  } catch (error) {
+    console.log("Error in getAllUserProfileInfo controller", error.message);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+};
+
 export const addInfo = async (req, res) => {
   try {
     const { birthday, hobbies, motto } = req.body;

@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import ProfInfo from "../models/profileinfo.model.js";
 import {
   maleProfilePictures,
   femaleProfilePictures,
@@ -97,45 +98,52 @@ export const updateProfilePicture = async (req, res) => {
   }
 };
 
-
 export const updateUserProfile = async (req, res) => {
-  try
-  {
+  try {
     const userId = req.user._id;
     const { fullName, username } = req.body;
 
-    const dataToUpdate = {}
-    if (fullName !== undefined) { dataToUpdate.fullName = fullName };
-    if (username !== undefined) { dataToUpdate.username = username };
+    const dataToUpdate = {};
+    if (fullName !== undefined) {
+      dataToUpdate.fullName = fullName;
+    }
+    if (username !== undefined) {
+      dataToUpdate.username = username;
+    }
 
-    const updatedName = await User.findByIdAndUpdate(
-      userId,
-      dataToUpdate,
-      { new: true, runValidators: true }
-    );
+    const updatedName = await User.findByIdAndUpdate(userId, dataToUpdate, {
+      new: true,
+      runValidators: true,
+    });
 
     if (!updatedName) {
-      return res.status(404).json({ error:"User not found"});
+      return res.status(404).json({ error: "User not found" });
     }
 
     res.status(200).json({
       message: "Profile successfully updated",
-      updatedName: updatedName
+      updatedName: updatedName,
     });
-  }
-  catch (error) {
+  } catch (error) {
     console.log("Error in updateUserProfile controller", error.message);
     res.status(500).json({ error: "Something went wrong" });
   }
-}
+};
 
 export const deleteAccount = async (req, res) => {
   try {
     const userId = req.user._id;
 
-    await User.findByIdAndDelete(userId);
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    if (user.profileInfo) {
+      await ProfInfo.findByIdAndDelete(user.profileInfo);
+    }
+    await ProfInfo.findByIdAndDelete(userId);
 
-    res.status(200).json({message:"Account has been deleted"});
+    res.status(200).json({ message: "Account has been deleted" });
   } catch (error) {
     console.log("Error in delete account controller", error.message);
     res.status(500).json({ error: "Something went wrong" });

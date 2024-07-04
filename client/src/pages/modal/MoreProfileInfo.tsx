@@ -15,6 +15,7 @@ const MoreProfileInfo = ({ onClose }: MoreProfileInfoProps) => {
     onClose();
     updateProfileModalOpen();
   };
+  console.log(profileInfo);
 
   const headerStyle = "font-bold text-amber-500";
   return (
@@ -29,25 +30,38 @@ const MoreProfileInfo = ({ onClose }: MoreProfileInfoProps) => {
           <Edit3 size="14" />
         </div>
 
-          {/* Display Profile Info */}
-          <article className="flex justify-center gap-4">
+        {/* Display Profile Info */}
+        <article className="flex justify-center gap-4">
           <div>
             <h1 className={headerStyle}>Birthday</h1>
             <p>{formatDate(profileInfo.birthday) || "No birthday added"}</p>
           </div>
           <div className="text-center">
             <h1 className={headerStyle}>Motto</h1>
-            <p className="text-sm italic">{profileInfo.motto || "No motto added"}</p>
+            <p className="text-sm italic">
+              {profileInfo.motto || "No motto added"}
+            </p>
           </div>
         </article>
         <div className="pt-4 text-center">
           <h1 className={`${headerStyle} mb-2`}>Hobbies</h1>
           <ul className="flex flex-wrap justify-center gap-2">
-            {profileInfo.hobbies.map((hobby, index) => (
-              <li key={index} className={`text-sm py-0.5 px-2 rounded-2xl ${getRandomColor()}`}>
-                {hobby}
+            {profileInfo.hobbies.length === 0 ? (
+              // Empty Array
+              <li className="text--sm py-0.5 px-3 rounded-2xl bg-zinc-700">
+                No hobbies added yet
               </li>
-            ))}
+            ) : (
+              // With Hobbies
+              profileInfo.hobbies.map((hobby, index) => (
+                <li
+                  key={index}
+                  className={`text-sm py-0.5 px-2 rounded-2xl ${getRandomColor()}`}
+                >
+                  {hobby}
+                </li>
+              ))
+            )}
           </ul>
         </div>
       </div>
