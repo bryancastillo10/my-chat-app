@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import ProfInfo from "../models/profileinfo.model.js";
 import {
   maleProfilePictures,
   femaleProfilePictures,
@@ -133,7 +134,14 @@ export const deleteAccount = async (req, res) => {
   try {
     const userId = req.user._id;
 
-    await User.findByIdAndDelete(userId);
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    if (user.profileInfo) {
+      await ProfInfo.findByIdAndDelete(user.profileInfo);
+    }
+    await ProfInfo.findByIdAndDelete(userId);
 
     res.status(200).json({ message: "Account has been deleted" });
   } catch (error) {
@@ -141,5 +149,3 @@ export const deleteAccount = async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 };
-
-export const getAllUserProfileInfo = async (req, res) => {};
