@@ -11,7 +11,7 @@ import protectRoute from "../middleware/protectRoute.js";
 
 const router = express.Router();
 
-router.get("/all-profileinfo", protectRoute, getAllUserProfileInfo);
+router.get("/allprofileinfo", protectRoute, getAllUserProfileInfo);
 router.post("/add", protectRoute, addInfo);
 router.get("/hobby-options", getHobbyOptions);
 router.get("/view/:id", protectRoute, getInfo);
