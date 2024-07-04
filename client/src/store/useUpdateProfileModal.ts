@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 export interface profileInfoData {
+  _id: string;
   birthday: string;
   hobbies: string[];
   motto: string;
@@ -16,7 +17,7 @@ type UpdateProfileModalStore = {
 
 const useUpdateProfileModal = create<UpdateProfileModalStore>()((set) => ({
   // state for additional profile info
-  profileInfo: { birthday: "", hobbies: [], motto: "" },
+  profileInfo: { _id: "", birthday: "", hobbies: [], motto: "" },
   setProfileInfo: (profileInfo) => set({ profileInfo }),
 
   // state for opening and closing the submodal

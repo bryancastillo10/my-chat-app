@@ -15,7 +15,6 @@ const MoreProfileInfo = ({ onClose }: MoreProfileInfoProps) => {
     onClose();
     updateProfileModalOpen();
   };
-  console.log(profileInfo);
 
   const headerStyle = "font-bold text-amber-500";
   return (
