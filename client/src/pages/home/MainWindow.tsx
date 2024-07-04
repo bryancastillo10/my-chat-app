@@ -41,7 +41,7 @@ const MainWindow = () => {
             </span>{" "}
             !🧑‍🚀
           </p>
-          <p>Start messaging by selecting users on the sidebar!</p>
+          <p>Start messaging by selecting your friends</p>
         </div>
       </div>
     </>

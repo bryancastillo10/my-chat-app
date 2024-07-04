@@ -1,5 +1,9 @@
 import ProfInfo from "../models/profileinfo.model.js";
 
+export const getAllUserProfileInfo = async (req, res) => {
+  console.log("Get All User Info Controller");
+};
+
 export const addInfo = async (req, res) => {
   try {
     const { birthday, hobbies, motto } = req.body;
