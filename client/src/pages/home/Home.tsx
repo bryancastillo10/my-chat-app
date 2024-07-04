@@ -5,6 +5,7 @@ import UpdateProfilePicModal from "../modal/UpdateProfilePicModal";
 import ViewProfileModal from "../modal/ViewProfileModal";
 import DeleteAccountModal from "../modal/DeleteAccountModal";
 import UpdateProfileModal from "../modal/UpdateProfileModal";
+import FriendProfileModal from "../modal/FriendProfileModal";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
         <UpdateProfilePicModal />
         <ViewProfileModal />
         <UpdateProfileModal />
+        <FriendProfileModal/>
         <DeleteAccountModal />
       </div>
       <div className="flex overflow-y-auto">
