@@ -7,6 +7,7 @@ export type userData = {
   fullName: string;
   gender: string;
   profilePic: string;
+  profileInfo: string;
   updatedAt: string;
   username: string;
 } | null;
