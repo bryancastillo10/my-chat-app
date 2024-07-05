@@ -10,7 +10,7 @@ const Login = () => {
       <div className="w-full p-10
         rounded-lg shadow-md glassmorphism">
           <Heading isSignUpPage={false} header="Welcome to" subHeader="Log In Here" />
-        <div className="flex justify-center spacing-x-8 gap-10  items-center">
+        <div className="flex flex-col md:flex-row justify-center spacing-x-8 gap-10  items-center">
         <div className="size-60  flex place-self-center">
           <img src={SpaceChat} alt="main-logo" />
         </div>
