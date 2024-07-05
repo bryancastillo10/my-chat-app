@@ -8,3 +8,6 @@ const formatDate = (dateString:string) => {
 };
 
 export default formatDate;
+
+const currentDate = new Date();
+export const maxDate = currentDate.toISOString().split('T')[0];

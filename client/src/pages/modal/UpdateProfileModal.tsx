@@ -3,6 +3,7 @@ import Modal from "./Modal";
 import { FieldInput, FieldSelect, Button } from "../../components";
 import useUpdateProfileInfo from "../../hooks/user/useUpdateProfileInfo";
 import useUpdateProfileModal from "../../store/useUpdateProfileModal";
+import { maxDate } from "../../utils/formatDate";
 
 const UpdateProfileInfoForm = () => {
   const { profileInfo, setProfileInfo, isOpen, onClose } =
@@ -22,7 +23,7 @@ const UpdateProfileInfoForm = () => {
       await updateProfileInfo();
       onClose();
     },
-    [updateProfileInfo]
+    [updateProfileInfo, onClose]
   );
 
   const body = (
@@ -36,6 +37,7 @@ const UpdateProfileInfoForm = () => {
             value={profileInfo.birthday}
             type="date"
             onChange={onChangeInput}
+            max={maxDate}
           />
           <FieldInput
             textLabel="Motto"
