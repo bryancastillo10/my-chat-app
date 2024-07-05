@@ -1,9 +1,8 @@
 import Modal from "./Modal";
 import useViewProfileModal from "../../store/useViewProfileModal";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
-import { ProfileName } from "../../components";
 import useUpdateNames from "../../hooks/user/useUpdateNames";
-import MoreProfileInfo from "./MoreProfileInfo";
+import { ProfileBody } from "../../components";
 import useSubModal from "../../store/useSubModal";
 
 const ViewProfileModal = () => {
@@ -19,34 +18,14 @@ const ViewProfileModal = () => {
   };
 
   const body = (
-    <div className="max-w-[90%] mx-auto">
-      <div className="flex justify-center items-center ">
-        <div className="">
-          <img
-            className="size-28 rounded-full"
-            src={authUser.profilePic}
-            alt={authUser.profilePic}
-          />
-        </div>
-        <div className="flex flex-col gap-0.5">
-          <ProfileName
-            label="Full Name"
-            loading={loading}
-            field="fullName"
-            value={authUser.fullName}
-            updateAction={updateNames}
-          />
-          <ProfileName
-            label="Username"
-            loading={loading}
-            field="username"
-            value={authUser.username}
-            updateAction={updateNames}
-          />
-        </div>
-      </div>
-      <MoreProfileInfo onClose={onClose} />
-    </div>
+    <ProfileBody
+      fullName={authUser.fullName}
+      username={authUser.username}
+      loading={loading}
+      profilePic={authUser.profilePic}
+      onClose={onClose}
+      updateAction={updateNames}
+    />
   );
   return (
     <>

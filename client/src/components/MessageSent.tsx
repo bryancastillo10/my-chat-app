@@ -2,20 +2,22 @@ import { useAuthContext } from "../hooks/auth/useAuthContext";
 import useConversation, { messageData } from "../store/useConversation";
 import { getHours } from "../utils/getHours";
 
-
-
-interface MessageSentProps{
-  message: messageData ;
+interface MessageSentProps {
+  message: messageData;
 }
 
-const MessageSent = ({message}: MessageSentProps) => {
+const MessageSent = ({ message }: MessageSentProps) => {
   const { authUser } = useAuthContext();
   const { selectedChat } = useConversation();
   const senderId = message?.senderId;
-  if (!authUser || !selectedChat) { return null }
+  if (!authUser || !selectedChat) {
+    return null;
+  }
   const fromMessage = senderId === authUser._id;
 
-  const timeStamp = message?.createdAt ? getHours(message.createdAt) : "Invalid Date";
+  const timeStamp = message?.createdAt
+    ? getHours(message.createdAt)
+    : "Invalid Date";
 
   // Conditional Styling
   const chatLayout = fromMessage ? "chat-end" : "chat-start";
@@ -26,7 +28,7 @@ const MessageSent = ({message}: MessageSentProps) => {
 
   return (
     <div className={`chat ${chatLayout}`}>
-      <div className="chat-image avatar">
+      <div className="chat-image avatar hover:scale-110 duration-500 ease-in-out">
         <div className="w-10 rounded-full">
           <img src={profPic} alt="user-avatar-bubble" />
         </div>

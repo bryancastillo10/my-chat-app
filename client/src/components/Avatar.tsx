@@ -20,7 +20,6 @@ const Avatar = ({ currentUser, profilePic }: AvatarProps) => {
     setOpenMenu(!openMenu);
   }, [openMenu]);
 
-
   return (
     <div className="relative flex items-center gap-2">
       <div className="flex flex-col justify-center items-center">

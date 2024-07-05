@@ -5,14 +5,16 @@ import { Edit3 } from "lucide-react";
 import { getRandomColor } from "../../utils/badgeColor";
 
 interface MoreProfileInfoProps {
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 const MoreProfileInfo = ({ onClose }: MoreProfileInfoProps) => {
   const { onOpen: updateProfileModalOpen } = useUpdateProfileModal();
   const { profileInfo } = useGetProfileInfo();
   const updateProfileClicked = () => {
-    onClose();
+    if (onClose) {
+      onClose();
+    }
     updateProfileModalOpen();
   };
 
@@ -21,13 +23,15 @@ const MoreProfileInfo = ({ onClose }: MoreProfileInfoProps) => {
     <div className="block max-w-[80%] h-[200px] mx-auto pt-2">
       <div className="relative grid grid-cols-1 space-y-4 place-items-center">
         {/* Edit Profile Info Icon */}
-        <div
-          onClick={updateProfileClicked}
-          className="absolute top-10 right-[-10%] cursor-pointer p-1 hover:bg-amber-500 rounded-md duration-500 ease-out
+        {onClose && (
+          <div
+            onClick={updateProfileClicked}
+            className="absolute top-10 right-[-10%] cursor-pointer p-1 hover:bg-amber-500 rounded-md duration-500 ease-out
           grid grid-cols-1 place-items-center"
-        >
-          <Edit3 size="14" />
-        </div>
+          >
+            <Edit3 size="14" />
+          </div>
+        )}
 
         {/* Display Profile Info */}
         <article className="flex justify-center gap-4">
