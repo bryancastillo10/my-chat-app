@@ -8,8 +8,8 @@ interface ProfileNameProps {
   label: string;
   value: string;
   loading?: boolean;
-  updateAction: (params: UpdateNameParams) => void;
-  field: "username" | "fullName" | "birthday" | "hobbies" | "motto";
+  updateAction?: (params: UpdateNameParams) => void;
+  field: "username" | "fullName";
 }
 
 const ProfileInfo = ({
@@ -30,7 +30,9 @@ const ProfileInfo = ({
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const updateParams: UpdateNameParams = { [field]: newValue };
-      updateAction(updateParams);
+      if (updateAction !== undefined) {
+        updateAction(updateParams);
+      }
       toggleEdit();
     },
     [updateAction, newValue, field, toggleEdit]
@@ -47,12 +49,14 @@ const ProfileInfo = ({
           <label className="text-sm text-amber-500">{label}</label>
           <p className="font-bold">{value}</p>
         </div>
-        <span
-          className="cursor-pointer hover:text-amber-500"
-          onClick={toggleEdit}
-        >
-          <Edit3 size="14" />
-        </span>
+        {updateAction && (
+          <span
+            className="cursor-pointer hover:text-amber-500"
+            onClick={toggleEdit}
+          >
+            <Edit3 size="14" />
+          </span>
+        )}
       </div>
       {openEdit && (
         <form
