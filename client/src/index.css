@@ -10,6 +10,7 @@ body {
   background-position: center;
 }
 
+/* Utility Classes */
 @layer utilities {
   .text-link {
     @apply text-white leading-loose relative before:content-[''] 
@@ -25,5 +26,36 @@ body {
   .modal-glassmorphism {
     @apply rounded-lg bg-slate-500/90
     bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0;
+  }
+}
+
+/* Shake Animation */
+.shake {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.2s both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
   }
 }

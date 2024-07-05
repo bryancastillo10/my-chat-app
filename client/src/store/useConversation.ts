@@ -20,6 +20,7 @@ export type messageData = {
   receiverId: string;
   senderId: string;
   updatedAt: string;
+  shouldShake?: boolean;
 } | null;
 
 type ConversationStore = {

@@ -22,6 +22,7 @@ const MessageSent = ({ message }: MessageSentProps) => {
   // Conditional Styling
   const chatLayout = fromMessage ? "chat-end" : "chat-start";
   const chatBgColor = fromMessage ? "bg-emerald-500" : "bg-amber-500";
+  const shakeEffect = message?.shouldShake ? "shake" : "";
 
   // Avatar Pic
   const profPic = fromMessage ? authUser.profilePic : selectedChat.profilePic;
@@ -33,7 +34,7 @@ const MessageSent = ({ message }: MessageSentProps) => {
           <img src={profPic} alt="user-avatar-bubble" />
         </div>
       </div>
-      <div className={`chat-bubble text-white ${chatBgColor}`}>
+      <div className={`chat-bubble text-white ${shakeEffect} ${chatBgColor}`}>
         {message?.message || "No Message Content"}
       </div>
       <div className="chat-footer opacity-50 text-xs flex gap-1 items-center text-white">
