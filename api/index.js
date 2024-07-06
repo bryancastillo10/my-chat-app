@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 app.use(express.json()); // to parse the incoming requests with JSON payloads
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "*",
   method:["POST","GET","PUT","DELETE"],
   credentials:true,
 }))
