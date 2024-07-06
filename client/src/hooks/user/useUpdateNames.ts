@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "../auth/useAuthContext";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../../utils/api";
 
 export interface UpdateNameParams{
     fullName?: string;
@@ -25,7 +26,7 @@ const useUpdateNames = () => {
 
         setLoading(true);
         try {
-            const res = await fetch(`/api/users/update/profile/${currentUserId}`,
+            const res = await fetch(`${API_BASE_URL}/api/users/update/profile/${currentUserId}`,
                 {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },

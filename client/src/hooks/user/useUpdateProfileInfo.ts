@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "../auth/useAuthContext";
 import useUpdateProfileModal from "../../store/useUpdateProfileModal";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../../utils/api";
 
 const useUpdateProfileInfo = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -17,7 +18,7 @@ const useUpdateProfileInfo = () => {
         setLoading(false);
         return;
       }
-      const res = await fetch(`/api/profileinfo/update/${profileInfoId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/profileinfo/update/${profileInfoId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(profileInfo),

@@ -1,10 +1,12 @@
+import { API_BASE_URL } from "./api";
+
 export interface HobbyOption {
   label: string;
   value: string;
 }
 const fetchHobbyOptions = async (): Promise<HobbyOption[]> => {
     try {
-        const res = await fetch(`/api/profileinfo/hobby-options`);
+        const res = await fetch(`${API_BASE_URL}/api/profileinfo/hobby-options`);
         if (!res.ok) {
             throw new Error("Failed to fetch the hobby options");
         }

@@ -3,6 +3,7 @@ import { useAuthContext } from "../auth/useAuthContext";
 import useSubModal from "../../store/useSubModal";
 import useLogout from "../auth/useLogout";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../../utils/api";
 
 const useDeleteAccount = () => {
     const [loading, setLoading] = useState<boolean>(false);
@@ -19,7 +20,7 @@ const useDeleteAccount = () => {
             
             setLoading(true);
 
-            const res = await fetch(`/api/users/delete/account/${currentUserId}`, {
+            const res = await fetch(`${API_BASE_URL}/api/users/delete/account/${currentUserId}`, {
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" }
             });

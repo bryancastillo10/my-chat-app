@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../auth/useAuthContext";
+import { API_BASE_URL } from "../../utils/api";
 
 const useProfilePicChoices = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -14,7 +15,7 @@ const useProfilePicChoices = () => {
     const getProfilePicChoices = async (currentUserId: string) => {
       setLoading(true);
       try {
-        const res = await fetch(`/api/users/profile-pictures`, {
+        const res = await fetch(`${API_BASE_URL}/api/users/profile-pictures`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ currentUserId }),
