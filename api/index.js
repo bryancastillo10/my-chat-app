@@ -30,6 +30,7 @@ app.get("/", (req, res) => {
 app.use(express.json()); // to parse the incoming requests with JSON payloads
 app.use(cookieParser());
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // Routes
 app.use("/api/auth", authRoutes);
