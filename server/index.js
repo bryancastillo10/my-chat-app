@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 app.use(express.json()); 
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://space-chat-beta.vercel.app",
   method:["POST","GET","PUT","DELETE"],
   credentials:true,
 }))
