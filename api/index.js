@@ -26,11 +26,11 @@ app.get("/", (req, res) => {
   res.status(200).json({message:"SpaceChat App Server is here!"})
 });
 
-// MiddleWare
-app.use(express.json()); // to parse the incoming requests with JSON payloads
-app.use(cookieParser());
+// Middleware
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
+app.use(express.json()); // to parse the incoming requests with JSON payloads
+app.use(cookieParser());
 
 // Routes
 app.use("/api/auth", authRoutes);
