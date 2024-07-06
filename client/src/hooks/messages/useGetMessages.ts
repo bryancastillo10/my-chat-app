@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import useConversation from '../../store/useConversation';
 import toast from 'react-hot-toast';
+import { API_BASE_URL } from '../../utils/api';
 
 const useGetMessages = () => {
     const [loading, setLoading] = useState<boolean>(false);
@@ -9,7 +10,7 @@ const useGetMessages = () => {
         const getMessages = async () => {
             setLoading(true);
             try {
-                const res = await fetch(`/api/messages/${selectedChat?._id}`);
+                const res = await fetch(`${API_BASE_URL}/api/messages/${selectedChat?._id}`);
                 if (!res.ok) {
                     throw new Error('Failed to fetch the messages');
                 }

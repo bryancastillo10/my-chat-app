@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "../auth/useAuthContext";
 import toast from "react-hot-toast";
 import useProfilePicModal from "../../store/useProfilePicModal";
+import { API_BASE_URL } from "../../utils/api";
 
 const useUpdateProfilePic = () => {
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
@@ -13,7 +14,7 @@ const useUpdateProfilePic = () => {
     setIsUpdating(true);
     if (!currentUserId) return;
     try {
-      const res = await fetch(`/api/users/update/profilepicture/${currentUserId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/users/update/profilepicture/${currentUserId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ profilePicChoice: selectedProfPic }),
