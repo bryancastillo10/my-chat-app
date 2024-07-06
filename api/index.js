@@ -31,6 +31,11 @@ app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 app.use(express.json()); // to parse the incoming requests with JSON payloads
 app.use(cookieParser());
+app.use(cors({
+  origin: "http://localhost:5173",
+  method:["POST","GET","PUT","DELETE"],
+  credentials:true,
+}))
 
 // Routes
 app.use("/api/auth", authRoutes);
