@@ -15,9 +15,10 @@ import { app, server } from "./socket/socket.js";
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 
-// app.get("/", (req, res) => {
-//   res.send("Server is Ready");
-// });
+// Server Run Validation
+app.get("/", (req, res) => {
+  res.status(200).json({message:"SpaceChat App Server is here!"})
+});
 
 // MiddleWare
 app.use(express.json()); // to parse the incoming requests with JSON payloads
