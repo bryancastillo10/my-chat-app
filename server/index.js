@@ -17,8 +17,9 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
+  AccessControlAllowOrigin:"*",
   origin: "https://space-chat-beta.vercel.app",
-  method:["POST","GET","PUT","DELETE"],
+  methods:["POST","GET","PUT","DELETE"],
   credentials:true,
 }))
 app.use(express.json()); 
