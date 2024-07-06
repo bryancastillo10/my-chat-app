@@ -1,16 +1,17 @@
-import useGetProfileInfo from "../../hooks/user/useGetProfileInfo";
-import useUpdateProfileModal from "../../store/useUpdateProfileModal";
+
+import useUpdateProfileModal, { profileInfoData } from "../../store/useUpdateProfileModal";
 import formatDate from "../../utils/formatDate";
 import { Edit3 } from "lucide-react";
 import { getRandomColor } from "../../utils/badgeColor";
 
 interface MoreProfileInfoProps {
+  profileInfo: profileInfoData;
   onClose?: () => void;
 }
 
-const MoreProfileInfo = ({ onClose }: MoreProfileInfoProps) => {
+const MoreProfileInfo = ({ onClose, profileInfo}: MoreProfileInfoProps) => {
   const { onOpen: updateProfileModalOpen } = useUpdateProfileModal();
-  const { profileInfo } = useGetProfileInfo();
+
   const updateProfileClicked = () => {
     if (onClose) {
       onClose();
