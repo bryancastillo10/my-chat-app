@@ -16,9 +16,9 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+app.options('*', cors()) 
 app.use(cors({
-  AccessControlAllowOrigin:"*",
-  origin: "https://space-chat-beta.vercel.app",
+  origin: ["https://space-chat-beta.vercel.app","http://localhost:3000"],
   methods:["POST","GET","PUT","DELETE"],
   credentials:true,
 }))
