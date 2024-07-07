@@ -13,7 +13,7 @@ import { app, server } from "./socket/socket.js";
 // Declared Variables
 dotenv.config();
 const PORT = process.env.PORT || 5000;
-export const CLIENT = process.env.REACT_URL || "http://localhost:5173";
+const CLIENT = process.env.REACT_URL || "http://localhost:5173";
 
 // Test Run
 app.get("/", (req, res) => {
