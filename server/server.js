@@ -14,11 +14,12 @@ import { app, server } from "./socket/socket.js";
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 
-// app.get("/", (req, res) => {
-//   res.send("Server is Ready");
-// });
+// Test Run
+app.get("/", (req, res) => {
+  res.send("Space Chat Server is Ready");
+});
 
-// MiddleWare
+// Middleware
 app.use(express.json()); // to parse the incoming requests with JSON payloads
 app.use(cookieParser());
 
