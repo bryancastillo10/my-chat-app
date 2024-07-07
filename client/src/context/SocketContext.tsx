@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import { ContextProviderProps, SocketContextType } from "./type";
 import { useAuthContext } from "../hooks/auth/useAuthContext";
 import { io, Socket } from "socket.io-client";
+import { API_URL } from "../utils/api";
 
 
 export const SocketContext = createContext({} as SocketContextType);
@@ -13,7 +14,7 @@ export const SocketContextProvider = ({ children }: ContextProviderProps) => {
 
     useEffect(() => {
         if (authUser) {
-            const socketInstance = io("http://localhost:3000", {
+            const socketInstance = io(`${API_URL}`, {
                 query: {
                     userId: authUser._id
                 }
