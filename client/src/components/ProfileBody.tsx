@@ -1,12 +1,15 @@
 import ProfileName from "./ProfileName";
 import MoreProfileInfo from "../pages/modal/MoreProfileInfo";
 import { UpdateNameParams } from "../hooks/user/useUpdateNames";
+import { profileInfoData } from "../store/useUpdateProfileModal";
+
 
 interface ProfileBodyProps {
   loading?: boolean;
   fullName: string;
   username: string;
   profilePic: string;
+  profileInfo: profileInfoData;
   onClose?: () => void;
   updateAction?: (params: UpdateNameParams) => void;
 }
@@ -16,6 +19,7 @@ const ProfileBody = ({
   fullName,
   username,
   profilePic,
+  profileInfo,
   onClose,
   updateAction,
 }: ProfileBodyProps) => {
@@ -46,7 +50,9 @@ const ProfileBody = ({
           />
         </div>
       </div>
-      <MoreProfileInfo onClose={onClose} />
+      <MoreProfileInfo
+        profileInfo={profileInfo}
+        onClose={onClose} />
     </div>
   );
 };

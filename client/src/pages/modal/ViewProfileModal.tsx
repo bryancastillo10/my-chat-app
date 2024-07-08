@@ -4,9 +4,11 @@ import { useAuthContext } from "../../hooks/auth/useAuthContext";
 import useUpdateNames from "../../hooks/user/useUpdateNames";
 import { ProfileBody } from "../../components";
 import useSubModal from "../../store/useSubModal";
+import useGetProfileInfo from "../../hooks/user/useGetProfileInfo";
 
 const ViewProfileModal = () => {
   const { authUser } = useAuthContext();
+  const { profileInfo } = useGetProfileInfo();
   const { isOpen, onClose } = useViewProfileModal();
   const { onOpen: onOpenSubModal } = useSubModal();
   const { loading, updateNames } = useUpdateNames();
@@ -23,6 +25,7 @@ const ViewProfileModal = () => {
       username={authUser.username}
       loading={loading}
       profilePic={authUser.profilePic}
+      profileInfo={profileInfo}
       onClose={onClose}
       updateAction={updateNames}
     />
