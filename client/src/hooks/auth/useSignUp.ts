@@ -1,6 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "./useAuthContext";
+import { API_URL } from "../../utils/api";
 
 interface signUpProps {
   fullName: string;
@@ -20,7 +21,7 @@ const useSignUp = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/auth/signup", {
+      const res = await fetch(`${API_URL}/api/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(signUpData),
@@ -33,13 +34,12 @@ const useSignUp = () => {
 
       localStorage.setItem("app-user", JSON.stringify(data));
       setAuthUser(data);
-
-    } catch (error:unknown) {
-    if (error instanceof Error) {
-            toast.error(error.message);
-            } else {
-                toast.error('An unknown error occurred');
-            }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("An unknown error occurred");
+      }
     } finally {
       setLoading(false);
     }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { userData } from "../../store/useConversation";
+import { API_URL } from "../../utils/api";
 
 const useGetConversations = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -10,7 +11,7 @@ const useGetConversations = () => {
     const getConversations = async () => {
       setLoading(true);
       try {
-        const res = await fetch("/api/users/connections");
+        const res = await fetch(`${API_URL}/api/users/connections`);
         if (!res.ok) {
           throw new Error("Failed to fetch user conversations");
         }
