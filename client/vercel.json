@@ -1,8 +1,12 @@
-   {
-    "routes":[
-        {
-            "src":"/[^.]+",
-            "dest":"/"
-        }
-    ]
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://space-chat-server.onrender.com"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
     }
+  ]
+}
