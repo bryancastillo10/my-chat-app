@@ -15,6 +15,7 @@ const FriendProfileModal = () => {
               fullName={conversation.fullName}
               username={conversation.username}
               profilePic={conversation.profilePic}
+              profileInfo={profileInfo}
             />
           </>
         )}
