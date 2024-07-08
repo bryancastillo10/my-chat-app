@@ -22,11 +22,13 @@ app.get("/", (req, res) => {
 });
 
 // Middleware
-app.use(cors({
-  origin: `${CLIENT}`, 
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
- credentials: true
-}));
+app.use(
+  cors({
+    origin: CLIENT,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"],
+    credentials: true,
+  })
+);
 app.use(express.json()); // to parse the incoming requests with JSON payloads
 app.use(cookieParser());
 
