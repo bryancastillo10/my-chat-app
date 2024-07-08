@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { profileInfoData } from "../../store/useUpdateProfileModal";
 import toast from "react-hot-toast";
+import { API_URL } from "../../utils/api";
 
 const useGetAllProfileInfo = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -10,7 +11,7 @@ const useGetAllProfileInfo = () => {
     const getAllProfileInfo = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/profileinfo/allprofileinfo`);
+        const res = await fetch(`${API_URL}/api/profileinfo/allprofileinfo`);
 
         if (!res.ok) {
           toast.error("Failed to fetch all profile information");
