@@ -1,3 +1,5 @@
+declare module "react-dom/client";
+
 declare module "*.mp3" {
   const src: string;
   export default src;
