@@ -68,10 +68,8 @@ const UpdateProfileInfoForm = () => {
       title="Update Profile Information"
       subtitle="Share information about you"
       body={body}
-      actionLabel="Update Profile"
-      action={() => {}}
-      secondaryAction={onClose}
-      secondaryActionLabel="Cancel"
+      actionLabel="Cancel"
+      action={onClose}
     />
   );
 };
